@@ -30,8 +30,9 @@ public class EnemyBullet : MonoBehaviour
 		if (other.CompareTag("Player"))
 		{
 
-			Destroy(gameObject);
 		}
+
+		Destroy(gameObject);
 	}
 
 	void OnBecameInvisible()

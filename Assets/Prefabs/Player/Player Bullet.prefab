@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7499798901104991307}
   - component: {fileID: 7499798901104991306}
   - component: {fileID: 7499798901104991303}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,3 +148,4 @@ MonoBehaviour:
   _theRB: {fileID: 7499798901104991306}
   _impactFX: {fileID: 2075030217373539307, guid: 09eee142c00e2af458f85fc9fa883724,
     type: 3}
+  _damageToGive: 50
