@@ -836,6 +836,11 @@ MonoBehaviour:
   _moveSpeed: 3
   _rangeToChasePlayer: 5
   _health: 150
+  _deathSplatters:
+  - {fileID: 7508235896696720864, guid: 3975a4a337d481143af0f5baaffe276c, type: 3}
+  - {fileID: 416294307214255036, guid: 8cc925ed642b91f469e1abff27d37d6f, type: 3}
+  - {fileID: 5795651244396876825, guid: f367f0023277946419288eff5d078ae1, type: 3}
+  - {fileID: 710911208399921531, guid: 0a4384a9ea8608c4983c7eab3bd72be1, type: 3}
 --- !u!50 &1738578511
 Rigidbody2D:
   serializedVersion: 4
