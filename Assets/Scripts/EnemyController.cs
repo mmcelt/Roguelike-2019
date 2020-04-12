@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
 	[SerializeField] Rigidbody2D _theRB;
 	[SerializeField] float _moveSpeed;
 	[SerializeField] float _rangeToChasePlayer;
+	[SerializeField] int _health = 150;
 
 	Vector3 _moveDirection;
 	Animator _anim;
@@ -46,7 +47,16 @@ public class EnemyController : MonoBehaviour
 
 	#region Public Methods
 
+	public void DamageEnemy(int damage)
+	{
+		_health -= damage;
 
+		if (_health <= 0)
+		{
+			_health = 0;
+			Destroy(gameObject);
+		}
+	}
 	#endregion
 
 	#region Private Methods

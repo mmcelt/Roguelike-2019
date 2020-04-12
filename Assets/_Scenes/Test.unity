@@ -774,7 +774,7 @@ GameObject:
   - component: {fileID: 1738578510}
   m_Layer: 0
   m_Name: Enemy - Skeleton
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -835,6 +835,7 @@ MonoBehaviour:
   _theRB: {fileID: 1738578511}
   _moveSpeed: 3
   _rangeToChasePlayer: 5
+  _health: 150
 --- !u!50 &1738578511
 Rigidbody2D:
   serializedVersion: 4

@@ -9,6 +9,7 @@ public class PlayerBullet : MonoBehaviour
 	[SerializeField] float _speed = 7.5f;
 	[SerializeField] Rigidbody2D _theRB;
 	[SerializeField] GameObject _impactFX;
+	[SerializeField] int _damageToGive = 50;
 
 	#endregion
 
@@ -29,6 +30,10 @@ public class PlayerBullet : MonoBehaviour
 		Vector3 bulletOffset = GetComponent<BoxCollider2D>().size.x / 2 * transform.right;
 
 		Instantiate(_impactFX, transform.position + bulletOffset, Quaternion.identity);
+
+		if(other.CompareTag("Enemy"))
+			other.GetComponent<EnemyController>().DamageEnemy(_damageToGive);
+
 		Destroy(gameObject);
 	}
 
