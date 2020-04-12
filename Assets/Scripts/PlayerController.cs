@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
 		_moveInput.x = Input.GetAxisRaw("Horizontal");
 		_moveInput.y = Input.GetAxisRaw("Vertical");
 
+
+		_moveInput.Normalize();	//keeps diagonal speed the same as right angle speed
+
 		//transform.position += new Vector3(_moveInput.x * _moveSpeed * Time.deltaTime, _moveInput.y * _moveSpeed * Time.deltaTime, 0f);
 
 		_theRB.velocity = _moveInput * _moveSpeed;
