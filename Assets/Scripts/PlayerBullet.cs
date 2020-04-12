@@ -8,6 +8,7 @@ public class PlayerBullet : MonoBehaviour
 
 	[SerializeField] float _speed = 7.5f;
 	[SerializeField] Rigidbody2D _theRB;
+	[SerializeField] GameObject _impactFX;
 
 	#endregion
 
@@ -24,6 +25,14 @@ public class PlayerBullet : MonoBehaviour
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
+	{
+		Vector3 bulletOffset = GetComponent<BoxCollider2D>().size.x / 2 * transform.right;
+
+		Instantiate(_impactFX, transform.position + bulletOffset, Quaternion.identity);
+		Destroy(gameObject);
+	}
+
+	void OnBecameInvisible()
 	{
 		Destroy(gameObject);
 	}
