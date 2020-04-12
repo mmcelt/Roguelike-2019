@@ -29,7 +29,7 @@ public class EnemyBullet : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
-
+			PlayerHealthController.Instance.DamagePlayer();
 		}
 
 		Destroy(gameObject);
