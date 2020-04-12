@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
 	#region Fields
 
+	public static PlayerController Instance;
+
 	[SerializeField] float _moveSpeed;
 	[SerializeField] Rigidbody2D _theRB;
 	[SerializeField] Transform _gunHand;
@@ -21,6 +23,11 @@ public class PlayerController : MonoBehaviour
 	#endregion
 
 	#region MonoBehaviour Methods
+
+	void Awake()
+	{
+		Instance = this;
+	}
 
 	void Start() 
 	{
