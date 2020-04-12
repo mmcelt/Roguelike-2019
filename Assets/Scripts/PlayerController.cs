@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] Rigidbody2D _theRB;
 	[SerializeField] Transform _gunHand;
 	[SerializeField] Animator _anim;
+	[SerializeField] GameObject _bulletPrefab;
+	[SerializeField] Transform _firePoint;
 
 	Vector2 _moveInput;
 
@@ -56,6 +58,12 @@ public class PlayerController : MonoBehaviour
 		Vector2 offset = new Vector2(mousePos.x - screenPoint.x, mousePos.y - screenPoint.y);
 		float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
 		_gunHand.rotation = Quaternion.Euler(0f, 0f, angle);
+
+		//fire bullet...
+		if (Input.GetMouseButtonDown(0))
+		{
+			Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+		}
 
 		//trigger the animations..
 		if(_moveInput != Vector2.zero)
