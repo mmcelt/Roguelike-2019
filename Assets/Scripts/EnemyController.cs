@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour
 	[SerializeField] int _health = 150;
 	[SerializeField] GameObject[] _deathSplatters;
 	[SerializeField] GameObject _hurtEffect;
+	[SerializeField] SpriteRenderer _theSprite;
+	[Header("Shooting")]
 	[SerializeField] bool _shouldShoot;
 	[SerializeField] GameObject _bullet;
 	[SerializeField] Transform _firePoint;
@@ -34,11 +36,14 @@ public class EnemyController : MonoBehaviour
 	
 	void Update() 
 	{
-		Movement();
-
-		if (_shouldShoot)
+		if (_theSprite.isVisible && Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < _rangeToShootPlayer)
 		{
-			Shoot();
+			Movement();
+
+			if (_shouldShoot)
+			{
+				Shoot();
+			}
 		}
 	}
 	#endregion
@@ -86,11 +91,8 @@ public class EnemyController : MonoBehaviour
 		_fireCounter -= Time.deltaTime;
 		if (_fireCounter <= 0)
 		{
-			if (Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < _rangeToShootPlayer)
-			{
-				_fireCounter = _fireRate;
-				Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
-			}
+			_fireCounter = _fireRate;
+			Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
 		}
 	}
 
