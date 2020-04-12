@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour
 
 	[SerializeField] float _moveSpeed;
 
-	Vector2 _moveInput;
-
 	[SerializeField] Rigidbody2D _theRB;
 	[SerializeField] Transform _gunHand;
+
+	Vector2 _moveInput;
+
+	Camera _theCam;
 
 	#endregion
 
@@ -19,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
 	void Start() 
 	{
-		
+		_theCam = Camera.main;
 	}
 	
 	void Update() 
@@ -32,9 +34,21 @@ public class PlayerController : MonoBehaviour
 		_theRB.velocity = _moveInput * _moveSpeed;
 
 		Vector3 mousePos = Input.mousePosition;
-		Vector3 screenPoint = Camera.main.WorldToScreenPoint(transform.localPosition);
+		Vector3 screenPoint = _theCam.WorldToScreenPoint(transform.localPosition);
 
-		//rotate the gun arm
+		//flip the player & square away the gun...
+		if (mousePos.x < screenPoint.x)
+		{
+			transform.localScale = new Vector3(-1f, 1f, 1f);
+			_gunHand.localScale = new Vector3(-1f, -1f, 1f);
+		}
+		else
+		{
+			transform.localScale = Vector3.one;
+			_gunHand.localScale = Vector3.one;
+		}
+
+		//rotate the gun arm...
 		Vector2 offset = new Vector2(mousePos.x - screenPoint.x, mousePos.y - screenPoint.y);
 		float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
 		_gunHand.rotation = Quaternion.Euler(0f, 0f, angle);
