@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _theRB: {fileID: 3838921757152836725}
   _moveSpeed: 3
-  _rangeToChasePlayer: 5
+  _rangeToChasePlayer: 7
   _health: 150
   _deathSplatters:
   - {fileID: 7508235896696720864, guid: 3975a4a337d481143af0f5baaffe276c, type: 3}
@@ -125,10 +125,11 @@ MonoBehaviour:
   - {fileID: 710911208399921531, guid: 0a4384a9ea8608c4983c7eab3bd72be1, type: 3}
   _hurtEffect: {fileID: 1187803517544105396, guid: 84ccd96716019024b9d495c45ed6eec2,
     type: 3}
-  _shouldShoot: 0
-  _bullet: {fileID: 0}
+  _shouldShoot: 1
+  _bullet: {fileID: 6097897845569742414, guid: 38b49db38945b434d9dc80faa1600ce9, type: 3}
   _firePoint: {fileID: 3838921758080711472}
-  _fireRate: 0.4
+  _fireRate: 0.6
+  _rangeToShootPlayer: 10
 --- !u!1 &3838921758080711475
 GameObject:
   m_ObjectHideFlags: 0

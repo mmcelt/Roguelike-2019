@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
 	[SerializeField] GameObject _bullet;
 	[SerializeField] Transform _firePoint;
 	[SerializeField] float _fireRate;
+	[SerializeField] float _rangeToShootPlayer;
 
 	float _fireCounter;
 
@@ -85,8 +86,11 @@ public class EnemyController : MonoBehaviour
 		_fireCounter -= Time.deltaTime;
 		if (_fireCounter <= 0)
 		{
-			_fireCounter = _fireRate;
-			Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
+			if (Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < _rangeToShootPlayer)
+			{
+				_fireCounter = _fireRate;
+				Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
+			}
 		}
 	}
 
