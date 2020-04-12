@@ -7,16 +7,16 @@ public class PlayerController : MonoBehaviour
 	#region Fields
 
 	[SerializeField] float _moveSpeed;
-
 	[SerializeField] Rigidbody2D _theRB;
 	[SerializeField] Transform _gunHand;
 	[SerializeField] Animator _anim;
 	[SerializeField] GameObject _bulletPrefab;
 	[SerializeField] Transform _firePoint;
+	[SerializeField] float _timeBetweenShots;
 
 	Vector2 _moveInput;
-
 	Camera _theCam;
+	float _shotCounter;
 
 	#endregion
 
@@ -63,6 +63,18 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetMouseButtonDown(0))
 		{
 			Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+			_shotCounter = _timeBetweenShots;
+		}
+
+		if (Input.GetMouseButton(0))
+		{
+			_shotCounter -= Time.deltaTime;
+
+			if (_shotCounter <= 0)
+			{
+				Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+				_shotCounter = _timeBetweenShots;
+			}
 		}
 
 		//trigger the animations..

@@ -260,6 +260,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 7499798901104991302, guid: 5ca61c55c69e3ee49baf8f43b4e5a5f3,
     type: 3}
   _firePoint: {fileID: 1322791163}
+  _timeBetweenShots: 0.3
 --- !u!58 &259971220
 CircleCollider2D:
   m_ObjectHideFlags: 0
