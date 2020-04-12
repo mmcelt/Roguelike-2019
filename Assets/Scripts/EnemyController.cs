@@ -12,6 +12,12 @@ public class EnemyController : MonoBehaviour
 	[SerializeField] int _health = 150;
 	[SerializeField] GameObject[] _deathSplatters;
 	[SerializeField] GameObject _hurtEffect;
+	[SerializeField] bool _shouldShoot;
+	[SerializeField] GameObject _bullet;
+	[SerializeField] Transform _firePoint;
+	[SerializeField] float _fireRate;
+
+	float _fireCounter;
 
 	Vector3 _moveDirection;
 	Animator _anim;
@@ -28,6 +34,11 @@ public class EnemyController : MonoBehaviour
 	void Update() 
 	{
 		Movement();
+
+		if (_shouldShoot)
+		{
+			Shoot();
+		}
 	}
 	#endregion
 
@@ -67,6 +78,16 @@ public class EnemyController : MonoBehaviour
 			_anim.SetBool("isMoving", true);
 		else
 			_anim.SetBool("isMoving", false);
+	}
+
+	void Shoot()
+	{
+		_fireCounter -= Time.deltaTime;
+		if (_fireCounter <= 0)
+		{
+			_fireCounter = _fireRate;
+			Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
+		}
 	}
 
 	void Die()
