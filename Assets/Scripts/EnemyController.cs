@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
 	[SerializeField] float _rangeToChasePlayer;
 	[SerializeField] int _health = 150;
 	[SerializeField] GameObject[] _deathSplatters;
+	[SerializeField] GameObject _hurtEffect;
 
 	Vector3 _moveDirection;
 	Animator _anim;
@@ -26,7 +27,31 @@ public class EnemyController : MonoBehaviour
 	
 	void Update() 
 	{
-		if(Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < _rangeToChasePlayer)
+		Movement();
+	}
+	#endregion
+
+	#region Public Methods
+
+	public void DamageEnemy(int damage)
+	{
+		_health -= damage;
+
+		Instantiate(_hurtEffect, transform.position, Quaternion.identity);
+
+		if (_health <= 0)
+		{
+			_health = 0;
+			Die();
+		}
+	}
+	#endregion
+
+	#region Private Methods
+
+	void Movement()
+	{
+		if (Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < _rangeToChasePlayer)
 		{
 			_moveDirection = PlayerController.Instance.transform.position - transform.position;
 		}
@@ -42,25 +67,7 @@ public class EnemyController : MonoBehaviour
 			_anim.SetBool("isMoving", true);
 		else
 			_anim.SetBool("isMoving", false);
-
 	}
-	#endregion
-
-	#region Public Methods
-
-	public void DamageEnemy(int damage)
-	{
-		_health -= damage;
-
-		if (_health <= 0)
-		{
-			_health = 0;
-			Die();
-		}
-	}
-	#endregion
-
-	#region Private Methods
 
 	void Die()
 	{
