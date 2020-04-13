@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
 	[SerializeField] GameObject _bullet;
 	[SerializeField] Transform _firePoint;
 	[SerializeField] float _fireRate;
-	[SerializeField] float _rangeToShootPlayer;
+	[SerializeField] float _rangeToShootPlayer;	//has to be >= _rangeToChasePlayer
 
 	float _fireCounter;
 
