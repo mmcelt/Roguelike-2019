@@ -23,6 +23,8 @@ public class PlayerHealthController : MonoBehaviour
 	void Start() 
 	{
 		_currentHealth = _maxHealth;
+		UIController.Instance._healthSlider.maxValue = _maxHealth;
+		UpdateHalthbar();
 	}
 	
 	void Update() 
@@ -43,11 +45,16 @@ public class PlayerHealthController : MonoBehaviour
 
 			PlayerController.Instance.gameObject.SetActive(false);
 		}
+		UpdateHalthbar();
 	}
 	#endregion
 
 	#region Private Methods
 
-
+	void UpdateHalthbar()
+	{
+		UIController.Instance._healthSlider.value = _currentHealth;
+		UIController.Instance._healthText.text = _currentHealth + " / " + _maxHealth;
+	}
 	#endregion
 }
