@@ -196,6 +196,7 @@ MonoBehaviour:
     type: 3}
   _firePoint: {fileID: 4954370338632600985}
   _timeBetweenShots: 0.3
+  _theSprite: {fileID: 4954370337959856705}
 --- !u!1 &4954370337959856707
 GameObject:
   m_ObjectHideFlags: 0

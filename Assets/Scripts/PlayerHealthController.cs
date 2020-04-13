@@ -10,6 +10,10 @@ public class PlayerHealthController : MonoBehaviour
 
 	[SerializeField] int _maxHealth;
 	[SerializeField] int _currentHealth;
+	[SerializeField] float _invincibilityLength = 1f;
+
+	float _invincibilityCounter;
+	Color _originalBodyColor;
 
 	#endregion
 
@@ -25,11 +29,18 @@ public class PlayerHealthController : MonoBehaviour
 		_currentHealth = _maxHealth;
 		UIController.Instance._healthSlider.maxValue = _maxHealth;
 		UpdateHalthbar();
+		_originalBodyColor = PlayerController.Instance._theSprite.color;
 	}
-	
-	void Update() 
+
+	void Update()
 	{
-		
+		if (_invincibilityCounter > 0)
+		{
+			_invincibilityCounter -= Time.deltaTime;
+
+			if (_invincibilityCounter <= 0)
+				PlayerController.Instance._theSprite.color = _originalBodyColor;
+		}
 	}
 	#endregion
 
@@ -37,16 +48,22 @@ public class PlayerHealthController : MonoBehaviour
 
 	public void DamagePlayer()
 	{
-		_currentHealth--;
-
-		if (_currentHealth <= 0)
+		if (_invincibilityCounter <= 0)
 		{
-			_currentHealth = 0;
+			_currentHealth--;
 
-			PlayerController.Instance.gameObject.SetActive(false);
-			//UIController.Instance._deathScreen.SetActive(true);
+			_invincibilityCounter = _invincibilityLength;
+			PlayerController.Instance._theSprite.color = new Color(_originalBodyColor.r, _originalBodyColor.g, _originalBodyColor.b, 0.5f);
+
+			if (_currentHealth <= 0)
+			{
+				_currentHealth = 0;
+
+				PlayerController.Instance.gameObject.SetActive(false);
+				UIController.Instance._deathScreen.SetActive(true);
+			}
+			UpdateHalthbar();
 		}
-		UpdateHalthbar();
 	}
 	#endregion
 

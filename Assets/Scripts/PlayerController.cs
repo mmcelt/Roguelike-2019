@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] GameObject _bulletPrefab;
 	[SerializeField] Transform _firePoint;
 	[SerializeField] float _timeBetweenShots;
+	public SpriteRenderer _theSprite;
 
 	Vector2 _moveInput;
 	Camera _theCam;

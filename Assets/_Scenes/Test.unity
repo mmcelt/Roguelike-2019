@@ -847,6 +847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 5
   _currentHealth: 0
+  _invincibilityLength: 1
 --- !u!114 &1793212742 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4183196333340690843, guid: d61be5ea5514a9740b845e551fe08598,
@@ -1118,6 +1119,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4954370337959856705, guid: 4b8f7856709771f41ae8366b31d6fe33,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b8f7856709771f41ae8366b31d6fe33, type: 3}
