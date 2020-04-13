@@ -36,14 +36,15 @@ public class EnemyController : MonoBehaviour
 	
 	void Update() 
 	{
-		if (_theSprite.isVisible && Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < _rangeToShootPlayer)
+		if (_theSprite.isVisible && PlayerController.Instance.gameObject.activeInHierarchy)
 		{
 			Movement();
-
-			if (_shouldShoot)
-			{
-				Shoot();
-			}
+			Shoot();
+		}
+		else
+		{
+			_theRB.velocity = Vector2.zero;
+			_anim.SetBool("isMoving", false);
 		}
 	}
 	#endregion
@@ -76,7 +77,6 @@ public class EnemyController : MonoBehaviour
 		{
 			_moveDirection = Vector3.zero;
 		}
-
 		_moveDirection.Normalize();
 		_theRB.velocity = _moveDirection * _moveSpeed;
 
@@ -88,11 +88,14 @@ public class EnemyController : MonoBehaviour
 
 	void Shoot()
 	{
-		_fireCounter -= Time.deltaTime;
-		if (_fireCounter <= 0)
+		if (_shouldShoot && Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < _rangeToShootPlayer)
 		{
-			_fireCounter = _fireRate;
-			Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
+			_fireCounter -= Time.deltaTime;
+			if (_fireCounter <= 0)
+			{
+				_fireCounter = _fireRate;
+				Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
+			}
 		}
 	}
 

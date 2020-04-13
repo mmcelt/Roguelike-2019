@@ -44,6 +44,7 @@ public class PlayerHealthController : MonoBehaviour
 			_currentHealth = 0;
 
 			PlayerController.Instance.gameObject.SetActive(false);
+			//UIController.Instance._deathScreen.SetActive(true);
 		}
 		UpdateHalthbar();
 	}
