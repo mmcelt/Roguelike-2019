@@ -7,6 +7,7 @@ public class HealthPickup : MonoBehaviour
 	#region Fields
 
 	[SerializeField] int _healAmount = 1;
+	[SerializeField] float _pickupDelayTime = 0.5f;
 
 	#endregion
 
@@ -17,9 +18,17 @@ public class HealthPickup : MonoBehaviour
 		
 	}
 
+	void Update()
+	{
+		if (_pickupDelayTime > 0)
+		{
+			_pickupDelayTime -= Time.deltaTime;
+		}
+	}
+
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Player"))
+		if (other.CompareTag("Player") && _pickupDelayTime <= 0)
 		{
 			PlayerHealthController.Instance.HealPlayer(_healAmount);
 			Destroy(gameObject);

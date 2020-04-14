@@ -8,6 +8,9 @@ public class Breakable : MonoBehaviour
 
 	[SerializeField] GameObject[] _brokenPieces;
 	[SerializeField] int _maxPieces = 5;
+	[SerializeField] bool _shouldDropItem;
+	[SerializeField] GameObject[] _itemsToDrop;
+	[SerializeField] float _itemDropPercent;
 
 	#endregion
 
@@ -24,13 +27,25 @@ public class Breakable : MonoBehaviour
 		{
 			Destroy(gameObject);
 
-			int piecesToDrop = Random.Range(1, _maxPieces + 1);
-			for (int i=0; i<piecesToDrop; i++)
+			//show broken pieces
+			int boxPieces = Random.Range(1, _maxPieces + 1);
+			for (int i=0; i<boxPieces; i++)
 			{
 				int randomPiece = Random.Range(0, _brokenPieces.Length);
 				Instantiate(_brokenPieces[randomPiece], transform.position, transform.rotation);
 			}
-		}
+
+			//drop items
+			if (_shouldDropItem)
+			{
+				float dropChance = Random.Range(0f, 100f);
+				if (dropChance <= _itemDropPercent)
+				{
+					int randomItem = Random.Range(0, _itemsToDrop.Length);
+					Instantiate(_itemsToDrop[randomItem], transform.position, Quaternion.identity);
+				}
+			}
+	}
 	}
 	#endregion
 
