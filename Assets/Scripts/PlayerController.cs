@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
 
 			_activeMoveSpeed = _dashSpeed;
 			_dashCounter = _dashLength;
+			_anim.SetTrigger("dash");
 		}
 
 		if (_dashCounter > 0)
