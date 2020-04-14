@@ -61,6 +61,7 @@ public class PlayerHealthController : MonoBehaviour
 
 				PlayerController.Instance.gameObject.SetActive(false);
 				UIController.Instance._deathScreen.SetActive(true);
+				AudioManager.Instance.PlayGameOver();
 			}
 			UpdateHalthbar();
 		}
