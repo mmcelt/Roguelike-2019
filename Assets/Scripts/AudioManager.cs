@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
 	public static AudioManager Instance;
 
 	public AudioSource _levelMusic, _gameOverMusic, _winMusic;
+	public AudioSource[] _sfx;
 
 	#endregion
 
@@ -37,6 +38,12 @@ public class AudioManager : MonoBehaviour
 	{
 		_levelMusic.Stop();
 		_winMusic.Play();
+	}
+
+	public void PlaySFX(int sfxIndex)
+	{
+		_sfx[sfxIndex].Stop();
+		_sfx[sfxIndex].Play();
 	}
 	#endregion
 
