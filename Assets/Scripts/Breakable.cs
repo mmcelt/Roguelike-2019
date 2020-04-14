@@ -24,7 +24,7 @@ public class Breakable : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Player") && PlayerController.Instance.DashCounter > 0)
+		if ((other.CompareTag("Player") && PlayerController.Instance.DashCounter > 0) || (other.CompareTag("Player Bullet")))
 		{
 			Destroy(gameObject);
 
