@@ -27,7 +27,9 @@ public class PlayerController : MonoBehaviour
 	Camera _theCam;
 	float _shotCounter;
 	float _activeMoveSpeed;
-	float _dashCounter, _dashCooldownCounter;
+	float _dashCooldownCounter;
+
+	public float DashCounter { get; private set; }
 
 	#endregion
 
@@ -96,18 +98,18 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			if (_dashCooldownCounter > 0 || _dashCounter > 0) return;
+			if (_dashCooldownCounter > 0 || DashCounter > 0) return;
 
 			_activeMoveSpeed = _dashSpeed;
-			_dashCounter = _dashLength;
+			DashCounter = _dashLength;
 			_anim.SetTrigger("dash");
 			PlayerHealthController.Instance.MakeInvincible(_dashInvincibility);
 		}
 
-		if (_dashCounter > 0)
+		if (DashCounter > 0)
 		{
-			_dashCounter -= Time.deltaTime;
-			if (_dashCounter <= 0)
+			DashCounter -= Time.deltaTime;
+			if (DashCounter <= 0)
 			{
 				_activeMoveSpeed = _moveSpeed;
 				_dashCooldownCounter = _dashCooldown;
