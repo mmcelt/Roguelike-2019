@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
 	[SerializeField] GameObject[] _deathSplatters;
 	[SerializeField] GameObject _hurtEffect;
 	[SerializeField] SpriteRenderer _theSprite;
+	[SerializeField] int _hurtSFX, _deathSFX, _shootSFX;
+
 	[Header("Shooting")]
 	[SerializeField] bool _shouldShoot;
 	[SerializeField] GameObject _bullet;
@@ -56,6 +58,7 @@ public class EnemyController : MonoBehaviour
 		_health -= damage;
 
 		Instantiate(_hurtEffect, transform.position, Quaternion.identity);
+		AudioManager.Instance.PlaySFX(_hurtSFX);
 
 		if (_health <= 0)
 		{
@@ -95,6 +98,7 @@ public class EnemyController : MonoBehaviour
 			{
 				_fireCounter = _fireRate;
 				Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
+				AudioManager.Instance.PlaySFX(_shootSFX);
 			}
 		}
 	}
@@ -104,6 +108,7 @@ public class EnemyController : MonoBehaviour
 		int selectedFX = Random.Range(0, _deathSplatters.Length);
 		int rotation = Random.Range(0, 4);
 		Instantiate(_deathSplatters[selectedFX], transform.position, Quaternion.Euler(0f, 0f, rotation * 90f));
+		AudioManager.Instance.PlaySFX(_deathSFX);
 
 		Destroy(gameObject);
 	}

@@ -126,6 +126,9 @@ MonoBehaviour:
   _hurtEffect: {fileID: 1187803517544105396, guid: 84ccd96716019024b9d495c45ed6eec2,
     type: 3}
   _theSprite: {fileID: 3838921758086012636}
+  _hurtSFX: 2
+  _deathSFX: 1
+  _shootSFX: 16
   _shouldShoot: 1
   _bullet: {fileID: 6097897845569742414, guid: 38b49db38945b434d9dc80faa1600ce9, type: 3}
   _firePoint: {fileID: 3838921758080711472}

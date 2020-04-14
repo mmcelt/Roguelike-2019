@@ -123,3 +123,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healAmount: 1
+  _pickupDelayTime: 0.5
+  _healthPickupSFX: 7

@@ -8,6 +8,7 @@ public class HealthPickup : MonoBehaviour
 
 	[SerializeField] int _healAmount = 1;
 	[SerializeField] float _pickupDelayTime = 0.5f;
+	[SerializeField] int _healthPickupSFX;
 
 	#endregion
 
@@ -31,6 +32,8 @@ public class HealthPickup : MonoBehaviour
 		if (other.CompareTag("Player") && _pickupDelayTime <= 0)
 		{
 			PlayerHealthController.Instance.HealPlayer(_healAmount);
+			AudioManager.Instance.PlaySFX(_healthPickupSFX);
+
 			Destroy(gameObject);
 		}
 	}

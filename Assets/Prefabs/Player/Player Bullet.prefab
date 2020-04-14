@@ -149,3 +149,4 @@ MonoBehaviour:
   _impactFX: {fileID: 2075030217373539307, guid: 09eee142c00e2af458f85fc9fa883724,
     type: 3}
   _damageToGive: 50
+  _impactSFX: 4

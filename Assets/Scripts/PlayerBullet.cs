@@ -10,6 +10,7 @@ public class PlayerBullet : MonoBehaviour
 	[SerializeField] Rigidbody2D _theRB;
 	[SerializeField] GameObject _impactFX;
 	[SerializeField] int _damageToGive = 50;
+	[SerializeField] int _impactSFX;
 
 	#endregion
 
@@ -31,8 +32,10 @@ public class PlayerBullet : MonoBehaviour
 
 		Instantiate(_impactFX, transform.position + bulletOffset, Quaternion.identity);
 
-		if(other.CompareTag("Enemy"))
+		if (other.CompareTag("Enemy"))
 			other.GetComponent<EnemyController>().DamageEnemy(_damageToGive);
+		else
+			AudioManager.Instance.PlaySFX(_impactSFX);
 
 		Destroy(gameObject);
 	}

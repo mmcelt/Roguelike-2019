@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] float _dashLength = 0.5f;
 	[SerializeField] float _dashCooldown = 1f;
 	[SerializeField] float _dashInvincibility = 0.5f;
+	[SerializeField] int _dashSFX, _shootSFX;
 
 	Vector2 _moveInput;
 	Camera _theCam;
@@ -83,6 +84,7 @@ public class PlayerController : MonoBehaviour
 		{
 			Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
 			_shotCounter = _timeBetweenShots;
+			AudioManager.Instance.PlaySFX(_shootSFX);
 		}
 
 		if (Input.GetMouseButton(0))
@@ -93,6 +95,7 @@ public class PlayerController : MonoBehaviour
 			{
 				Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
 				_shotCounter = _timeBetweenShots;
+				AudioManager.Instance.PlaySFX(_shootSFX);
 			}
 		}
 
@@ -104,6 +107,7 @@ public class PlayerController : MonoBehaviour
 			DashCounter = _dashLength;
 			_anim.SetTrigger("dash");
 			PlayerHealthController.Instance.MakeInvincible(_dashInvincibility);
+			AudioManager.Instance.PlaySFX(_dashSFX);
 		}
 
 		if (DashCounter > 0)

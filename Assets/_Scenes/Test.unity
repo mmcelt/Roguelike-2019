@@ -3203,6 +3203,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 5
   _currentHealth: 0
+  _hurtSFX: 11
+  _dieSFX: 9
   _invincibilityLength: 1
 --- !u!114 &1590184111
 MonoBehaviour:

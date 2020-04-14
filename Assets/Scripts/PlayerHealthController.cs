@@ -10,6 +10,8 @@ public class PlayerHealthController : MonoBehaviour
 
 	[SerializeField] int _maxHealth;
 	[SerializeField] int _currentHealth;
+	[SerializeField] int _hurtSFX, _dieSFX;
+
 	public float _invincibilityLength = 1f;
 
 	float _invincibilityCounter;
@@ -51,6 +53,7 @@ public class PlayerHealthController : MonoBehaviour
 		if (_invincibilityCounter <= 0)
 		{
 			_currentHealth--;
+			AudioManager.Instance.PlaySFX(_hurtSFX);
 
 			_invincibilityCounter = _invincibilityLength;
 			PlayerController.Instance._theSprite.color = new Color(_originalBodyColor.r, _originalBodyColor.g, _originalBodyColor.b, 0.5f);
@@ -59,6 +62,7 @@ public class PlayerHealthController : MonoBehaviour
 			{
 				_currentHealth = 0;
 
+				AudioManager.Instance.PlaySFX(_dieSFX);
 				PlayerController.Instance.gameObject.SetActive(false);
 				UIController.Instance._deathScreen.SetActive(true);
 				AudioManager.Instance.PlayGameOver();

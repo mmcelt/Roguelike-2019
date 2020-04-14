@@ -11,7 +11,7 @@ public class Breakable : MonoBehaviour
 	[SerializeField] bool _shouldDropItem;
 	[SerializeField] GameObject[] _itemsToDrop;
 	[SerializeField] float _itemDropPercent;
-	[SerializeField] int _breakSound;
+	[SerializeField] int _breakSFX;
 
 	#endregion
 
@@ -28,7 +28,7 @@ public class Breakable : MonoBehaviour
 		{
 			Destroy(gameObject);
 
-			AudioManager.Instance.PlaySFX(_breakSound);
+			AudioManager.Instance.PlaySFX(_breakSFX);
 
 			//show broken pieces
 			int boxPieces = Random.Range(1, _maxPieces + 1);
