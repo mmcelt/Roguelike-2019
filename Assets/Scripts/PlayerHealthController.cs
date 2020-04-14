@@ -10,7 +10,7 @@ public class PlayerHealthController : MonoBehaviour
 
 	[SerializeField] int _maxHealth;
 	[SerializeField] int _currentHealth;
-	[SerializeField] float _invincibilityLength = 1f;
+	public float _invincibilityLength = 1f;
 
 	float _invincibilityCounter;
 	Color _originalBodyColor;
@@ -64,6 +64,12 @@ public class PlayerHealthController : MonoBehaviour
 			}
 			UpdateHalthbar();
 		}
+	}
+
+	public void MakeInvincible(float length)
+	{
+		_invincibilityCounter = length;
+		PlayerController.Instance._theSprite.color = new Color(_originalBodyColor.r, _originalBodyColor.g, _originalBodyColor.b, 0.5f);
 	}
 	#endregion
 

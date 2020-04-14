@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour
 			_activeMoveSpeed = _dashSpeed;
 			_dashCounter = _dashLength;
 			_anim.SetTrigger("dash");
+			PlayerHealthController.Instance.MakeInvincible(_dashInvincibility);
 		}
 
 		if (_dashCounter > 0)
