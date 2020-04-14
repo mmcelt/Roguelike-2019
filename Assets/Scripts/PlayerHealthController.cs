@@ -71,6 +71,12 @@ public class PlayerHealthController : MonoBehaviour
 		_invincibilityCounter = length;
 		PlayerController.Instance._theSprite.color = new Color(_originalBodyColor.r, _originalBodyColor.g, _originalBodyColor.b, 0.5f);
 	}
+
+	public void HealPlayer(int amount)
+	{
+		_currentHealth = Mathf.Min(_currentHealth + amount, _maxHealth);
+		UpdateHalthbar();
+	}
 	#endregion
 
 	#region Private Methods
