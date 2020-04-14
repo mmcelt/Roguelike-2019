@@ -12,14 +12,22 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] Rigidbody2D _theRB;
 	[SerializeField] Transform _gunHand;
 	[SerializeField] Animator _anim;
+	public SpriteRenderer _theSprite;
+	[Header("Shooting")]
 	[SerializeField] GameObject _bulletPrefab;
 	[SerializeField] Transform _firePoint;
 	[SerializeField] float _timeBetweenShots;
-	public SpriteRenderer _theSprite;
+	[Header("Dashing")]
+	[SerializeField] float _dashSpeed = 8f;
+	[SerializeField] float _dashLength = 0.5f;
+	[SerializeField] float _dashCooldown = 1f;
+	[SerializeField] float _dashInvincibility = 0.5f;
 
 	Vector2 _moveInput;
 	Camera _theCam;
 	float _shotCounter;
+	float _activeMoveSpeed;
+	float _dashCounter, _dashCooldownCounter;
 
 	#endregion
 
@@ -33,6 +41,7 @@ public class PlayerController : MonoBehaviour
 	void Start() 
 	{
 		_theCam = Camera.main;
+		_activeMoveSpeed = _moveSpeed;
 	}
 	
 	void Update() 
@@ -45,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
 		//transform.position += new Vector3(_moveInput.x * _moveSpeed * Time.deltaTime, _moveInput.y * _moveSpeed * Time.deltaTime, 0f);
 
-		_theRB.velocity = _moveInput * _moveSpeed;
+		_theRB.velocity = _moveInput * _activeMoveSpeed;
 
 		Vector3 mousePos = Input.mousePosition;
 		Vector3 screenPoint = _theCam.WorldToScreenPoint(transform.localPosition);
@@ -83,6 +92,29 @@ public class PlayerController : MonoBehaviour
 				Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
 				_shotCounter = _timeBetweenShots;
 			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			if (_dashCooldownCounter > 0 || _dashCounter > 0) return;
+
+			_activeMoveSpeed = _dashSpeed;
+			_dashCounter = _dashLength;
+		}
+
+		if (_dashCounter > 0)
+		{
+			_dashCounter -= Time.deltaTime;
+			if (_dashCounter <= 0)
+			{
+				_activeMoveSpeed = _moveSpeed;
+				_dashCooldownCounter = _dashCooldown;
+			}
+		}
+
+		if (_dashCooldownCounter > 0)
+		{
+			_dashCooldownCounter -= Time.deltaTime;
 		}
 
 		//trigger the animations..
