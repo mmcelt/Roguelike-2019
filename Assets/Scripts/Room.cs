@@ -6,8 +6,11 @@ public class Room : MonoBehaviour
 {
 	#region Fields
 
-	[SerializeField] bool _closeWhenEntered;
+	[SerializeField] bool _closeWhenEntered, _openWhenEnemiesCleared;
 	[SerializeField] GameObject[] _doors;
+	[SerializeField] List<GameObject> _enemiesInRoom = new List<GameObject>();
+
+	bool _roomActive;
 
 	#endregion
 
@@ -20,7 +23,8 @@ public class Room : MonoBehaviour
 	
 	void Update() 
 	{
-		
+		if(_enemiesInRoom.Count > 0 && _roomActive && _openWhenEnemiesCleared)
+			CheckEnemiesInRoom();
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
@@ -31,12 +35,17 @@ public class Room : MonoBehaviour
 
 			if (_closeWhenEntered)
 			{
-				foreach(GameObject door in _doors)
-				{
-					door.SetActive(true);
-				}
+				CloseDoors();
 			}
+
+			_roomActive = true;
 		}
+	}
+
+	void OnTriggerExit2D(Collider2D other)
+	{
+		if (other.CompareTag("Player"))
+			_roomActive = false;
 	}
 	#endregion
 
@@ -47,6 +56,38 @@ public class Room : MonoBehaviour
 
 	#region Private Methods
 
+	void CheckEnemiesInRoom()
+	{
+		for(int i=0; i<_enemiesInRoom.Count; i++)
+		{
+			if (_enemiesInRoom[i] == null)
+			{
+				_enemiesInRoom.RemoveAt(i);
+				i--;
+			}
+		}
 
+		if (_enemiesInRoom.Count == 0)
+		{
+			OpenDoors();
+			_closeWhenEntered = false;
+		}
+	}
+
+	void CloseDoors()
+	{
+		foreach (GameObject door in _doors)
+		{
+			door.SetActive(true);
+		}
+	}
+
+	void OpenDoors()
+	{
+		foreach (GameObject door in _doors)
+		{
+			door.SetActive(false);
+		}
+	}
 	#endregion
 }
