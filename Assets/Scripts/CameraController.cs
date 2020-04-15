@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
 	public static CameraController Instance;
 
 	[SerializeField] float _moveSpeed;
-	[SerializeField] Transform _target;
+	Transform _target;
 
 	#endregion
 
@@ -35,7 +35,10 @@ public class CameraController : MonoBehaviour
 
 	#region Public Methods
 
-
+	public void ChangeTarget(Transform newTarget)
+	{
+		_target = newTarget;
+	}
 	#endregion
 
 	#region Private Methods
