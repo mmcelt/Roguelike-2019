@@ -36,10 +36,12 @@ public class LevelManager : MonoBehaviour
 
 	public IEnumerator LevelEnd()
 	{
+		PlayerController.Instance.StopThePlayer();
 		AudioManager.Instance.PlayLevelWinMusic();
 
 		yield return new WaitForSeconds(_loadWaitTime);
 		SceneManager.LoadScene(_nextLevel);
+		PlayerController.Instance._canMove = true;
 	}
 	#endregion
 

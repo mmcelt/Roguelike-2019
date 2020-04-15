@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] float _dashCooldown = 1f;
 	[SerializeField] float _dashInvincibility = 0.5f;
 	[SerializeField] int _dashSFX, _shootSFX;
+	[HideInInspector] public bool _canMove = true;
 
 	Vector2 _moveInput;
 	Camera _theCam;
@@ -49,6 +50,8 @@ public class PlayerController : MonoBehaviour
 	
 	void Update() 
 	{
+		if (!_canMove) return;
+
 		_moveInput.x = Input.GetAxisRaw("Horizontal");
 		_moveInput.y = Input.GetAxisRaw("Vertical");
 
@@ -139,7 +142,12 @@ public class PlayerController : MonoBehaviour
 
 	#region Public Methods
 
-
+	public void StopThePlayer()
+	{
+		_canMove = false;
+		_theRB.velocity = Vector2.zero;
+		_anim.SetBool("isMoving", false);
+	}
 	#endregion
 
 	#region Private Methods

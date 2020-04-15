@@ -19076,10 +19076,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 829075222962047152, guid: 78cac62ab89d44b4ca747b9a2290169e,
+        type: 3}
+      propertyPath: _closeWhenEntered
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 829075222962047152, guid: 78cac62ab89d44b4ca747b9a2290169e,
+        type: 3}
+      propertyPath: _openWhenEnemiesCleared
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1724526263457636491, guid: 78cac62ab89d44b4ca747b9a2290169e,
         type: 3}
       propertyPath: m_Name
       value: Room Basic
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219709360118826173, guid: 78cac62ab89d44b4ca747b9a2290169e,
+        type: 3}
+      propertyPath: _shouldShoot
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8717320886363481382, guid: 78cac62ab89d44b4ca747b9a2290169e,
         type: 3}
