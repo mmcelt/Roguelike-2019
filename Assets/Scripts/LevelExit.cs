@@ -22,7 +22,8 @@ public class LevelExit : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
-			SceneManager.LoadScene(_levelToLoad);
+			//SceneManager.LoadScene(_levelToLoad);
+			StartCoroutine(LevelManager.Instance.LevelEnd());
 		}
 	}
 	#endregion
