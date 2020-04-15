@@ -38,6 +38,7 @@ public class LevelManager : MonoBehaviour
 	{
 		PlayerController.Instance.StopThePlayer();
 		AudioManager.Instance.PlayLevelWinMusic();
+		UIController.Instance.FadeToBlack();
 
 		yield return new WaitForSeconds(_loadWaitTime);
 		SceneManager.LoadScene(_nextLevel);
