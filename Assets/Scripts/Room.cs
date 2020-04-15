@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Room : MonoBehaviour
-{	
+{
 	#region Fields
 
-	
+	[SerializeField] bool _closeWhenEntered;
+	[SerializeField] GameObject[] _doors;
+
 	#endregion
 
 	#region MonoBehaviour Methods
@@ -26,6 +28,14 @@ public class Room : MonoBehaviour
 		if (other.CompareTag("Player"))
 		{
 			CameraController.Instance.ChangeTarget(transform);
+
+			if (_closeWhenEntered)
+			{
+				foreach(GameObject door in _doors)
+				{
+					door.SetActive(true);
+				}
+			}
 		}
 	}
 	#endregion
