@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class UIController : MonoBehaviour
 	public GameObject _deathScreen;
 	public Image _fadeScreen;
 	public float _fadeSpeed;
+
+	[SerializeField] string _mainMenuScene, _levelOneScene;
 
 	bool _fadeToBlack, _fadeFromBlack;
 
@@ -58,6 +61,16 @@ public class UIController : MonoBehaviour
 	{
 		_fadeToBlack = true;
 		_fadeFromBlack = false;
+	}
+
+	public void NewGame()
+	{
+		SceneManager.LoadScene(_levelOneScene);
+	}
+
+	public void ReturnToMainMenu()
+	{
+		SceneManager.LoadScene(_mainMenuScene);
 	}
 	#endregion
 

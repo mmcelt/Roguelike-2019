@@ -18360,7 +18360,7 @@ PrefabInstance:
     - target: {fileID: 4219709360118826173, guid: 78cac62ab89d44b4ca747b9a2290169e,
         type: 3}
       propertyPath: _shouldShoot
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8717320886363481382, guid: 78cac62ab89d44b4ca747b9a2290169e,
         type: 3}
