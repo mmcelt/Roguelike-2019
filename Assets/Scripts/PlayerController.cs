@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 	
 	void Update() 
 	{
-		if (!_canMove) return;
+		if (!_canMove || LevelManager.Instance._isPaused) return;
 
 		_moveInput.x = Input.GetAxisRaw("Horizontal");
 		_moveInput.y = Input.GetAxisRaw("Vertical");

@@ -10,7 +10,9 @@ public class LevelManager : MonoBehaviour
 	public static LevelManager Instance;
 
 	[SerializeField] float _loadWaitTime = 4f;
+
 	public string _nextLevel;
+	public bool _isPaused;
 
 	#endregion
 
@@ -23,12 +25,15 @@ public class LevelManager : MonoBehaviour
 
 	void Start() 
 	{
-		
+		Time.timeScale = 1f;
 	}
 	
 	void Update() 
 	{
-		
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			PauseUnpause();
+		}
 	}
 	#endregion
 
@@ -41,8 +46,26 @@ public class LevelManager : MonoBehaviour
 		UIController.Instance.FadeToBlack();
 
 		yield return new WaitForSeconds(_loadWaitTime);
+
 		SceneManager.LoadScene(_nextLevel);
 		PlayerController.Instance._canMove = true;
+	}
+
+	public void PauseUnpause()
+	{
+		if (!_isPaused)
+		{
+			UIController.Instance._pauseMenu.SetActive(true);
+			_isPaused = true;
+			Time.timeScale = 0f;
+
+		}
+		else
+		{
+			UIController.Instance._pauseMenu.SetActive(false);
+			_isPaused = false;
+			Time.timeScale = 1f;
+		}
 	}
 	#endregion
 

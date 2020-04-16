@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
 	public GameObject _deathScreen;
 	public Image _fadeScreen;
 	public float _fadeSpeed;
+	public GameObject _pauseMenu;
 
 	[SerializeField] string _mainMenuScene, _levelOneScene;
 
@@ -65,12 +66,19 @@ public class UIController : MonoBehaviour
 
 	public void NewGame()
 	{
+		Time.timeScale = 1f;
 		SceneManager.LoadScene(_levelOneScene);
 	}
 
 	public void ReturnToMainMenu()
 	{
+		Time.timeScale = 1f;
 		SceneManager.LoadScene(_mainMenuScene);
+	}
+
+	public void ResumeGame()
+	{
+		LevelManager.Instance.PauseUnpause();
 	}
 	#endregion
 
