@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -27,6 +28,19 @@ public class LevelGenerator : MonoBehaviour
 
 		_selectedDirection = (Direction)Random.Range(0, 4);
 		MoveGenerationPoint();
+
+		for (int i=0; i<_distanceToEnd; i++)
+		{
+			Instantiate(_layoutRoom, _generationPoint.position, _generationPoint.rotation);
+			_selectedDirection = (Direction)Random.Range(0, 4);
+			MoveGenerationPoint();
+		}
+	}
+
+	void Update()
+	{
+		if (Input.GetKey(KeyCode.R))
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 	#endregion
 
@@ -42,16 +56,16 @@ public class LevelGenerator : MonoBehaviour
 		switch (_selectedDirection)
 		{
 			case Direction.UP:
-				_generationPoint.position = new Vector3(0f, _yOffset, 0f);
+				_generationPoint.position += new Vector3(0f, _yOffset, 0f);
 				break;
 			case Direction.RIGHT:
-				_generationPoint.position = new Vector3(_xOffset, 0f, 0f);
+				_generationPoint.position += new Vector3(_xOffset, 0f, 0f);
 				break;
 			case Direction.DOWN:
-				_generationPoint.position = new Vector3(0f, -_yOffset, 0f);
+				_generationPoint.position += new Vector3(0f, -_yOffset, 0f);
 				break;
 			case Direction.LEFT:
-				_generationPoint.position = new Vector3(-_xOffset, 0f, 0f);
+				_generationPoint.position += new Vector3(-_xOffset, 0f, 0f);
 				break;
 		}
 	}
