@@ -186,6 +186,12 @@ MonoBehaviour:
   _startColor: {r: 0, g: 1, b: 0, a: 1}
   _endColor: {r: 1, g: 0, b: 0, a: 1}
   _generationPoint: {fileID: 1057818949}
+  _selectedDirection: 0
+  _xOffset: 18
+  _yOffset: 10
+  _roomLayer:
+    serializedVersion: 2
+    m_Bits: 32768
 --- !u!4 &1922206242
 Transform:
   m_ObjectHideFlags: 0

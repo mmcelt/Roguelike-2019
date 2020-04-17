@@ -16,6 +16,7 @@ public class LevelGenerator : MonoBehaviour
 	[SerializeField] Direction _selectedDirection;
 	[SerializeField] float _xOffset = 18f;
 	[SerializeField] float _yOffset = 10f;
+	[SerializeField] LayerMask _roomLayer;
 
 	#endregion
 
@@ -34,6 +35,12 @@ public class LevelGenerator : MonoBehaviour
 			Instantiate(_layoutRoom, _generationPoint.position, _generationPoint.rotation);
 			_selectedDirection = (Direction)Random.Range(0, 4);
 			MoveGenerationPoint();
+
+			while (Physics2D.OverlapCircle(_generationPoint.position, 0.2f, _roomLayer))
+			{
+				//_selectedDirection = (Direction)Random.Range(0, 4);
+				MoveGenerationPoint();
+			}
 		}
 	}
 
