@@ -18,6 +18,10 @@ public class LevelGenerator : MonoBehaviour
 	[SerializeField] float _yOffset = 10f;
 	[SerializeField] LayerMask _roomLayer;
 
+	GameObject _endRoom;
+
+	List<GameObject> _layoutRoomObjects = new List<GameObject>();
+
 	#endregion
 
 	#region MonoBehaviour Methods
@@ -32,7 +36,9 @@ public class LevelGenerator : MonoBehaviour
 
 		for (int i=0; i<_distanceToEnd; i++)
 		{
-			Instantiate(_layoutRoom, _generationPoint.position, _generationPoint.rotation);
+			GameObject newRoom = Instantiate(_layoutRoom, _generationPoint.position, _generationPoint.rotation);
+
+			_layoutRoomObjects.Add(newRoom);
 			_selectedDirection = (Direction)Random.Range(0, 4);
 			MoveGenerationPoint();
 
@@ -40,6 +46,13 @@ public class LevelGenerator : MonoBehaviour
 			{
 				//_selectedDirection = (Direction)Random.Range(0, 4);
 				MoveGenerationPoint();
+			}
+
+			if (i == _distanceToEnd - 1)	//this is the last room
+			{
+				newRoom.GetComponent<SpriteRenderer>().color = _endColor;
+				_layoutRoomObjects.RemoveAt(i);
+				_endRoom = newRoom;
 			}
 		}
 	}
