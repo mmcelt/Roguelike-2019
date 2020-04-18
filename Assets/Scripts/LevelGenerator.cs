@@ -21,6 +21,7 @@ public class LevelGenerator : MonoBehaviour
 	GameObject _endRoom;
 
 	List<GameObject> _layoutRoomObjects = new List<GameObject>();
+	List<GameObject> _generatedOutlines = new List<GameObject>();
 
 	public RoomPrefabs _rooms;
 
@@ -36,6 +37,7 @@ public class LevelGenerator : MonoBehaviour
 		_selectedDirection = (Direction)Random.Range(0, 4);
 		MoveGenerationPoint();
 
+		//generate the remaining rooms...
 		for (int i=0; i<_distanceToEnd; i++)
 		{
 			GameObject newRoom = Instantiate(_layoutRoom, _generationPoint.position, _generationPoint.rotation);
@@ -57,6 +59,17 @@ public class LevelGenerator : MonoBehaviour
 				_endRoom = newRoom;
 			}
 		}
+
+		//create room outlines...
+		//start room
+		CreateRoomOutline(Vector3.zero);
+		//in-between romms...
+		foreach(GameObject room in _layoutRoomObjects)
+		{
+			CreateRoomOutline(room.transform.position);
+		}
+		//end room
+		CreateRoomOutline(_endRoom.transform.position);
 	}
 
 	void Update()
@@ -91,12 +104,108 @@ public class LevelGenerator : MonoBehaviour
 				break;
 		}
 	}
+
+	void CreateRoomOutline(Vector3 roomPosition)
+	{
+		bool roomAbove = Physics2D.OverlapCircle(roomPosition + new Vector3(0f, _yOffset, 0f), 0.2f, _roomLayer);
+		bool roomBelow = Physics2D.OverlapCircle(roomPosition + new Vector3(0f, -_yOffset, 0f), 0.2f, _roomLayer);
+		bool roomLeft = Physics2D.OverlapCircle(roomPosition + new Vector3(-_xOffset, 0f, 0f), 0.2f, _roomLayer);
+		bool roomRight = Physics2D.OverlapCircle(roomPosition + new Vector3(_xOffset, 0f, 0f), 0.2f, _roomLayer);
+
+		int directionCount = 0;
+		if (roomAbove)
+			directionCount++;
+
+		if (roomBelow)
+			directionCount++;
+
+		if (roomLeft)
+			directionCount++;
+
+		if (roomRight)
+			directionCount++;
+
+		switch (directionCount)
+		{
+			case 0:
+				Debug.LogError("No Connections detected!");
+				break;
+			case 1:
+				if (roomAbove)
+				{
+					_generatedOutlines.Add(Instantiate(_rooms.singleUp, roomPosition, Quaternion.identity));
+				}
+				if (roomBelow)
+				{
+					_generatedOutlines.Add(Instantiate(_rooms.singleDown, roomPosition, Quaternion.identity));
+				}
+				if (roomLeft)
+				{
+					_generatedOutlines.Add(Instantiate(_rooms.singleLeft, roomPosition, Quaternion.identity));
+				}
+				if (roomRight)
+				{
+					_generatedOutlines.Add(Instantiate(_rooms.singleRight, roomPosition, Quaternion.identity));
+				}
+				break;
+			case 2:
+				if(roomAbove && roomBelow)
+				{
+					_generatedOutlines.Add(Instantiate(_rooms.doubleUpDown, roomPosition, Quaternion.identity));
+				}
+				if (roomAbove && roomLeft)
+				{
+					_generatedOutlines.Add(Instantiate(_rooms.doubleLeftUp, roomPosition, Quaternion.identity));
+				}
+				if (roomAbove && roomRight)
+				{
+					_generatedOutlines.Add(Instantiate(_rooms.doubleUpRight, roomPosition, Quaternion.identity));
+				}
+				if (roomLeft && roomBelow)
+				{
+					_generatedOutlines.Add(Instantiate(_rooms.doubleDownLeft, roomPosition, Quaternion.identity));
+				}
+				if (roomRight && roomBelow)
+				{
+					_generatedOutlines.Add(Instantiate(_rooms.doubleRightDown, roomPosition, Quaternion.identity));
+				}
+				if (roomLeft && roomRight)
+				{
+					_generatedOutlines.Add(Instantiate(_rooms.doubleLeftRight, roomPosition, Quaternion.identity));
+				}
+				break;
+			case 3:
+				if (roomAbove && roomRight && roomBelow)
+				{
+					_generatedOutlines.Add(Instantiate(_rooms.tripleUpRightDown, roomPosition, Quaternion.identity));
+				}
+				if (roomLeft && roomRight && roomBelow)
+				{
+					_generatedOutlines.Add(Instantiate(_rooms.tripleRightDownLeft, roomPosition, Quaternion.identity));
+				}
+				if (roomLeft && roomAbove && roomBelow)
+				{
+					_generatedOutlines.Add(Instantiate(_rooms.tripleDownLeftUp, roomPosition, Quaternion.identity));
+				}
+				if (roomLeft && roomRight && roomAbove)
+				{
+					_generatedOutlines.Add(Instantiate(_rooms.tripleLeftUpRight, roomPosition, Quaternion.identity));
+				}
+				break;
+			case 4:
+				if (roomLeft && roomRight && roomAbove && roomBelow)
+				{
+					_generatedOutlines.Add(Instantiate(_rooms.fourWay, roomPosition, Quaternion.identity));
+				}
+				break;
+		}
+	}
 	#endregion
 }
 
 [System.Serializable]
 public class RoomPrefabs
 {
-	public GameObject singleUp, singleDown, singleright, singleLeft,
-		doubleLeftRight, doubleUpDown, doubleUpRight, doubleRightDown, doubleDownLeft, doubleLeftUp, tripleUpRightDown, tripleRightDownLeft, tripleDownleftUp, tripleLeftUpRight, fourWay;
+	public GameObject singleUp, singleDown, singleRight, singleLeft,
+		doubleLeftRight, doubleUpDown, doubleUpRight, doubleRightDown, doubleDownLeft, doubleLeftUp, tripleUpRightDown, tripleRightDownLeft, tripleDownLeftUp, tripleLeftUpRight, fourWay;
 }

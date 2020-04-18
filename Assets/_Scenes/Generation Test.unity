@@ -197,7 +197,7 @@ MonoBehaviour:
       type: 3}
     singleDown: {fileID: 1300204062120173419, guid: 79bc8c4c69635f14d86b169319dc7cb3,
       type: 3}
-    singleright: {fileID: 7266833376993112814, guid: 605a370b993b49246917af2b088abf52,
+    singleRight: {fileID: 7266833376993112814, guid: 605a370b993b49246917af2b088abf52,
       type: 3}
     singleLeft: {fileID: 2356021688857918169, guid: b68736685fff58c4fa7bc261cc125c14,
       type: 3}
@@ -217,7 +217,7 @@ MonoBehaviour:
       type: 3}
     tripleRightDownLeft: {fileID: 6032023552901803383, guid: 19cafa07ed3c80348b90a6fb9483fb6a,
       type: 3}
-    tripleDownleftUp: {fileID: 2477887256015397163, guid: 1674c71e2284bfb4f80500d0181c1697,
+    tripleDownLeftUp: {fileID: 2477887256015397163, guid: 1674c71e2284bfb4f80500d0181c1697,
       type: 3}
     tripleLeftUpRight: {fileID: 8546089518812882028, guid: 26a9a4336f9671b4fa255256b34298b9,
       type: 3}
