@@ -22,6 +22,8 @@ public class LevelGenerator : MonoBehaviour
 
 	List<GameObject> _layoutRoomObjects = new List<GameObject>();
 
+	public RoomPrefabs _rooms;
+
 	#endregion
 
 	#region MonoBehaviour Methods
@@ -90,4 +92,11 @@ public class LevelGenerator : MonoBehaviour
 		}
 	}
 	#endregion
+}
+
+[System.Serializable]
+public class RoomPrefabs
+{
+	public GameObject singleUp, singleDown, singleright, singleLeft,
+		doubleLeftRight, doubleUpDown, doubleUpRight, doubleRightDown, doubleDownLeft, doubleLeftUp, tripleUpRightDown, tripleRightDownLeft, tripleDownleftUp, tripleLeftUpRight, fourWay;
 }
