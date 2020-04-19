@@ -6,13 +6,21 @@ public class EnemyController : MonoBehaviour
 {
 	#region Fields
 
-	[SerializeField] Rigidbody2D _theRB;
+	[Header("Stats")]
 	[SerializeField] float _moveSpeed;
-	[SerializeField] float _rangeToChasePlayer;
 	[SerializeField] int _health = 150;
+	[Header("Chase Player")]
+	[SerializeField] bool _shouldChasePlayer;
+	[SerializeField] float _rangeToChasePlayer;
+	[Header("Run Away")]
+	[SerializeField] bool _shouldRunAway;
+	[SerializeField] float _rangeToRunAway;
+	[Header("References")]
+	[SerializeField] Rigidbody2D _theRB;
+	[SerializeField] SpriteRenderer _theSprite;
+	[Header("FX")]
 	[SerializeField] GameObject[] _deathSplatters;
 	[SerializeField] GameObject _hurtEffect;
-	[SerializeField] SpriteRenderer _theSprite;
 	[SerializeField] int _hurtSFX, _deathSFX, _shootSFX;
 
 	[Header("Shooting")]
@@ -40,14 +48,38 @@ public class EnemyController : MonoBehaviour
 	{
 		if (_theSprite.isVisible && PlayerController.Instance.gameObject.activeInHierarchy)
 		{
-			Movement();
+			_moveDirection = Vector3.zero;
+
+			if (Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < _rangeToChasePlayer && _shouldChasePlayer)
+			{
+				_moveDirection = PlayerController.Instance.transform.position - transform.position;
+			}
+			//else
+			//{
+			//	_moveDirection = Vector3.zero;
+			//	_theRB.velocity = Vector2.zero;
+			//	_anim.SetBool("isMoving", false);
+			//}
+		}
+
+		if (_shouldRunAway && Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < _rangeToRunAway)
+		{
+			_moveDirection = transform.position - PlayerController.Instance.transform.position;
+		}
+
+		_moveDirection.Normalize();
+		_theRB.velocity = _moveDirection * _moveSpeed;
+
+		if (_shouldShoot && Vector3.Distance(transform.position,PlayerController.Instance.transform.position) < _rangeToShootPlayer)
+		{
 			Shoot();
 		}
+
+		//animations...
+		if (_moveDirection != Vector3.zero)
+			_anim.SetBool("isMoving", true);
 		else
-		{
-			_theRB.velocity = Vector2.zero;
 			_anim.SetBool("isMoving", false);
-		}
 	}
 	#endregion
 
@@ -69,25 +101,6 @@ public class EnemyController : MonoBehaviour
 	#endregion
 
 	#region Private Methods
-
-	void Movement()
-	{
-		if (Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < _rangeToChasePlayer)
-		{
-			_moveDirection = PlayerController.Instance.transform.position - transform.position;
-		}
-		else
-		{
-			_moveDirection = Vector3.zero;
-		}
-		_moveDirection.Normalize();
-		_theRB.velocity = _moveDirection * _moveSpeed;
-
-		if (_moveDirection != Vector3.zero)
-			_anim.SetBool("isMoving", true);
-		else
-			_anim.SetBool("isMoving", false);
-	}
 
 	void Shoot()
 	{
