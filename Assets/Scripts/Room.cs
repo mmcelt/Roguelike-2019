@@ -56,6 +56,7 @@ public class Room : MonoBehaviour
 		foreach (GameObject door in _doors)
 		{
 			door.SetActive(false);
+			_closeWhenEntered = false;
 		}
 	}
 	#endregion
