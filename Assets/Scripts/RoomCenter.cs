@@ -8,7 +8,7 @@ public class RoomCenter : MonoBehaviour
 
 	[SerializeField] bool _openWhenEnemiesCleared;
 	[SerializeField] List<GameObject> _enemiesInRoom = new List<GameObject>();
-	[SerializeField] Room _theRoom;
+	public Room _theRoom;
 
 	#endregion
 
@@ -16,7 +16,8 @@ public class RoomCenter : MonoBehaviour
 
 	void Start() 
 	{
-		
+		if (_openWhenEnemiesCleared)
+			_theRoom._closeWhenEntered = true;
 	}
 	
 	void Update() 

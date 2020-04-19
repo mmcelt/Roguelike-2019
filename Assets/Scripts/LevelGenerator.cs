@@ -17,6 +17,8 @@ public class LevelGenerator : MonoBehaviour
 	[SerializeField] float _xOffset = 18f;
 	[SerializeField] float _yOffset = 10f;
 	[SerializeField] LayerMask _roomLayer;
+	[SerializeField] RoomCenter _centerStart, _centerEnd;
+	[SerializeField] RoomCenter[] _potentialCenters;
 
 	GameObject _endRoom;
 
@@ -63,13 +65,34 @@ public class LevelGenerator : MonoBehaviour
 		//create room outlines...
 		//start room
 		CreateRoomOutline(Vector3.zero);
-		//in-between romms...
+		//in-between rooms...
 		foreach(GameObject room in _layoutRoomObjects)
 		{
 			CreateRoomOutline(room.transform.position);
 		}
 		//end room
 		CreateRoomOutline(_endRoom.transform.position);
+
+		foreach(GameObject outline in _generatedOutlines)
+		{
+			bool generateCenter = true;
+
+			if (outline.transform.position == Vector3.zero)	//start room
+			{
+				Instantiate(_centerStart, outline.transform.position, Quaternion.identity)._theRoom = outline.GetComponent<Room>();
+				generateCenter = false;
+			}
+			if (outline.transform.position == _endRoom.transform.position)	//end room
+			{
+				Instantiate(_centerEnd, outline.transform.position, Quaternion.identity)._theRoom = outline.GetComponent<Room>();
+				generateCenter = false;
+			}
+			if (generateCenter)	//other rooms
+			{
+				int selectedCenter = Random.Range(0, _potentialCenters.Length);
+				Instantiate(_potentialCenters[selectedCenter], outline.transform.position, Quaternion.identity)._theRoom = outline.GetComponent<Room>();
+			}
+		}
 	}
 
 	void Update()

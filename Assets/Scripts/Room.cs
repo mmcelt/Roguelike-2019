@@ -6,7 +6,7 @@ public class Room : MonoBehaviour
 {
 	#region Fields
 
-	[SerializeField] bool _closeWhenEntered;//, _openWhenEnemiesCleared;
+	public bool _closeWhenEntered;//, _openWhenEnemiesCleared;
 	[SerializeField] GameObject[] _doors;
 	//[SerializeField] List<GameObject> _enemiesInRoom = new List<GameObject>();
 
