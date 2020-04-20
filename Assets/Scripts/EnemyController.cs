@@ -15,6 +15,12 @@ public class EnemyController : MonoBehaviour
 	[Header("Run Away")]
 	[SerializeField] bool _shouldRunAway;
 	[SerializeField] float _rangeToRunAway;
+	[Header("Wandering")]
+	[SerializeField] bool _shouldWander;
+	[SerializeField] float _wanderLength;
+	[SerializeField] float _pauseLength;
+	float _wanderCounter, _pauseCounter;
+	Vector3 _wanderDirection;
 	[Header("References")]
 	[SerializeField] Rigidbody2D _theRB;
 	[SerializeField] SpriteRenderer _theSprite;
@@ -32,7 +38,7 @@ public class EnemyController : MonoBehaviour
 
 	float _fireCounter;
 
-	Vector3 _moveDirection;
+	public Vector3 _moveDirection;
 	Animator _anim;
 
 	#endregion
@@ -42,6 +48,13 @@ public class EnemyController : MonoBehaviour
 	void Start() 
 	{
 		_anim = GetComponent<Animator>();
+
+		if (_shouldWander)
+		{
+			_wanderCounter = Random.Range(_wanderLength * 0.75f, _wanderLength * 1.25f);
+			_pauseCounter = Random.Range(_pauseLength * 0.75f, _pauseLength * 1.25f);
+
+		}
 	}
 	
 	void Update() 
@@ -60,12 +73,42 @@ public class EnemyController : MonoBehaviour
 			//	_theRB.velocity = Vector2.zero;
 			//	_anim.SetBool("isMoving", false);
 			//}
+			else
+			{
+				if (_shouldWander)
+				{
+					if (_wanderCounter > 0)	//move..
+					{
+						_wanderCounter -= Time.deltaTime;
+
+						//move the enemy...
+						_moveDirection = _wanderDirection;
+
+						if (_wanderCounter <= 0)	//pause..
+						{
+							_pauseCounter = Random.Range(_pauseLength * 0.75f, _pauseLength * 1.25f);
+						}
+					}
+					if (_pauseCounter > 0)
+					{
+						_pauseCounter -= Time.deltaTime;
+
+						if (_pauseCounter <= 0)	//reset wander & move...
+						{
+							_wanderCounter = Random.Range(_wanderLength * 0.75f, _wanderLength * 1.25f);
+
+							_wanderDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
+						}
+					}
+				}
+			}
 		}
 
 		if (_shouldRunAway && Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < _rangeToRunAway)
 		{
 			_moveDirection = transform.position - PlayerController.Instance.transform.position;
 		}
+
 
 		_moveDirection.Normalize();
 		_theRB.velocity = _moveDirection * _moveSpeed;
