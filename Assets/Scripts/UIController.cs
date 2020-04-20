@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
 
 	public Slider _healthSlider;
 	public Text _healthText;
+	public Text _goldText;
 	public GameObject _deathScreen;
 	public Image _fadeScreen;
 	public float _fadeSpeed;

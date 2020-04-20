@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
 	void Start() 
 	{
 		Time.timeScale = 1f;
+		GetCoins(_currentCoins);
 	}
 	
 	void Update() 
@@ -72,11 +73,13 @@ public class LevelManager : MonoBehaviour
 	public void GetCoins(int amount)
 	{
 		_currentCoins += amount;
+		UIController.Instance._goldText.text = _currentCoins.ToString();
 	}
 
 	public void SpendCoins(int amount)
 	{
 		_currentCoins = Mathf.Max(_currentCoins -= amount, 0);
+		UIController.Instance._goldText.text = _currentCoins.ToString();
 	}
 	#endregion
 
