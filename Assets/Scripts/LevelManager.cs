@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
 
 	public string _nextLevel;
 	public bool _isPaused;
+	public int _currentCoins;
 
 	#endregion
 
@@ -66,6 +67,16 @@ public class LevelManager : MonoBehaviour
 			_isPaused = false;
 			Time.timeScale = 1f;
 		}
+	}
+
+	public void GetCoins(int amount)
+	{
+		_currentCoins += amount;
+	}
+
+	public void SpendCoins(int amount)
+	{
+		_currentCoins = Mathf.Max(_currentCoins -= amount, 0);
 	}
 	#endregion
 
