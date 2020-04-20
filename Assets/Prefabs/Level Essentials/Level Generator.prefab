@@ -62,7 +62,16 @@ MonoBehaviour:
     type: 3}
   _potentialCenters:
   - {fileID: 1015966760118314786, guid: a5433042bd6c0a041abc5409b386ed71, type: 3}
-  - {fileID: 539691606997567062, guid: 2070b670a62d95b44b4cbbb2e20ef291, type: 3}
+  - {fileID: 1015966760118314786, guid: fbd547ef9607cb940804610cba149e35, type: 3}
+  - {fileID: 1015966760118314786, guid: 3cfdefa128f2d6d4aa5edb2d4d695ef5, type: 3}
+  - {fileID: 1015966760118314786, guid: defe5080c5f6f454a9f028f8e82fbea3, type: 3}
+  - {fileID: 1015966760118314786, guid: 4fb46de747069654aa5847398a271f38, type: 3}
+  - {fileID: 1015966760118314786, guid: 5562ab775e312ab448589695c6df143b, type: 3}
+  - {fileID: 1015966760118314786, guid: 90fd2f90ed0250b4ca8a25e9466898bc, type: 3}
+  - {fileID: 1015966760118314786, guid: 554988ec93a6a574481f58d66523cd40, type: 3}
+  - {fileID: 1015966760118314786, guid: 81c4c0a865ef3164ba9957fb204c0c1e, type: 3}
+  - {fileID: 1015966760118314786, guid: 5f76654d5ce6be447b60206627b53e11, type: 3}
+  - {fileID: 1015966760118314786, guid: f081d4bcd45bf5745a26bc1780e04af6, type: 3}
   _rooms:
     singleUp: {fileID: 1111933292257520108, guid: 8e7e4f2e2737631478b2ad1769de0ae3,
       type: 3}

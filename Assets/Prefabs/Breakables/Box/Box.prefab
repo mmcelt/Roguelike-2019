@@ -131,7 +131,7 @@ MonoBehaviour:
   - {fileID: 3194037219859712883, guid: 18236d30e35e47b4995e841aabf890de, type: 3}
   - {fileID: 8021986925728399487, guid: 2aef0cf1d5854254bb42cdf252ecfeda, type: 3}
   _maxPieces: 5
-  _shouldDropItem: 0
+  _shouldDropItem: 1
   _itemsToDrop:
   - {fileID: 3367721438323897349, guid: 3a53c985db621bd44836aa669b1e3090, type: 3}
   - {fileID: 7880070628419050445, guid: 706e483707e62db45ad725b1249e5d6c, type: 3}
