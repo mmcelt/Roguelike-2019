@@ -246,6 +246,10 @@ MonoBehaviour:
   _firePoint: {fileID: 6766746940405486135}
   _fireRate: 0.5
   _rangeToShootPlayer: 8
+  _shouldDropItem: 1
+  _itemsToDrop:
+  - {fileID: 570763670052225821, guid: b1d7b00a08cdd0f4e8ad613550d6899b, type: 3}
+  _itemDropPercent: 33
   _deathSplatters:
   - {fileID: 7508235896696720864, guid: 3975a4a337d481143af0f5baaffe276c, type: 3}
   - {fileID: 416294307214255036, guid: 8cc925ed642b91f469e1abff27d37d6f, type: 3}

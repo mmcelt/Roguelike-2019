@@ -39,6 +39,10 @@ public class EnemyController : MonoBehaviour
 	[SerializeField] float _rangeToShootPlayer;  //has to be >= _rangeToChasePlayer
 	float _fireCounter;
 
+	[Header("Drop Items")]
+	[SerializeField] bool _shouldDropItem;
+	[SerializeField] GameObject[] _itemsToDrop;
+	[SerializeField] float _itemDropPercent;
 	[Header("FX")]
 	[SerializeField] GameObject[] _deathSplatters;
 	[SerializeField] GameObject _hurtEffect;
@@ -185,6 +189,16 @@ public class EnemyController : MonoBehaviour
 		AudioManager.Instance.PlaySFX(_deathSFX);
 
 		Destroy(gameObject);
+		//drop items
+		if (_shouldDropItem)
+		{
+			float dropChance = Random.Range(0f, 100f);
+			if (dropChance <= _itemDropPercent)
+			{
+				int randomItem = Random.Range(0, _itemsToDrop.Length);
+				Instantiate(_itemsToDrop[randomItem], transform.position, Quaternion.identity);
+			}
+		}
 	}
 	#endregion
 }

@@ -111,6 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 230bd6307bdb6334e982f071ebf1772f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinValue: 1
-  _pickupDelayTime: 0.5
+  _coinValue: 10
+  _pickupDelayTime: 0.25
   _coinPickupSFX: 5

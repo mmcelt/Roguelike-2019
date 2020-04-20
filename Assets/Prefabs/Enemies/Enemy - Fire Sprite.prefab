@@ -246,8 +246,10 @@ MonoBehaviour:
   _firePoint: {fileID: 5862594698570220724}
   _fireRate: 0.5
   _rangeToShootPlayer: 10
-  _theRB: {fileID: 5862594699523130353}
-  _theSprite: {fileID: 5862594698589954392}
+  _shouldDropItem: 1
+  _itemsToDrop:
+  - {fileID: 570763670052225821, guid: b1d7b00a08cdd0f4e8ad613550d6899b, type: 3}
+  _itemDropPercent: 33
   _deathSplatters:
   - {fileID: 7508235896696720864, guid: 3975a4a337d481143af0f5baaffe276c, type: 3}
   - {fileID: 416294307214255036, guid: 8cc925ed642b91f469e1abff27d37d6f, type: 3}
@@ -258,6 +260,8 @@ MonoBehaviour:
   _hurtSFX: 2
   _deathSFX: 1
   _shootSFX: 16
+  _theRB: {fileID: 5862594699523130353}
+  _theSprite: {fileID: 5862594698589954392}
 --- !u!114 &7213227487423306812
 MonoBehaviour:
   m_ObjectHideFlags: 0

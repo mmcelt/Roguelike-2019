@@ -120,8 +120,20 @@ MonoBehaviour:
   _rangeToChasePlayer: 6
   _shouldRunAway: 1
   _rangeToRunAway: 7
-  _theRB: {fileID: 2869234191726435053}
-  _theSprite: {fileID: 2869234192676468804}
+  _shouldWander: 0
+  _wanderLength: 0
+  _pauseLength: 0
+  _shouldPatrol: 0
+  _patrolPoints: []
+  _shouldShoot: 1
+  _bullet: {fileID: 6097897845569742414, guid: 38b49db38945b434d9dc80faa1600ce9, type: 3}
+  _firePoint: {fileID: 2869234192648347048}
+  _fireRate: 0.5
+  _rangeToShootPlayer: 5
+  _shouldDropItem: 1
+  _itemsToDrop:
+  - {fileID: 570763670052225821, guid: b1d7b00a08cdd0f4e8ad613550d6899b, type: 3}
+  _itemDropPercent: 33
   _deathSplatters:
   - {fileID: 7508235896696720864, guid: 3975a4a337d481143af0f5baaffe276c, type: 3}
   - {fileID: 416294307214255036, guid: 8cc925ed642b91f469e1abff27d37d6f, type: 3}
@@ -132,11 +144,8 @@ MonoBehaviour:
   _hurtSFX: 2
   _deathSFX: 1
   _shootSFX: 16
-  _shouldShoot: 1
-  _bullet: {fileID: 6097897845569742414, guid: 38b49db38945b434d9dc80faa1600ce9, type: 3}
-  _firePoint: {fileID: 2869234192648347048}
-  _fireRate: 0.5
-  _rangeToShootPlayer: 5
+  _theRB: {fileID: 2869234191726435053}
+  _theSprite: {fileID: 2869234192676468804}
 --- !u!1 &2869234192648347051
 GameObject:
   m_ObjectHideFlags: 0

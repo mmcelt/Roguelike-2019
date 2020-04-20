@@ -48,7 +48,7 @@ public class Breakable : MonoBehaviour
 					Instantiate(_itemsToDrop[randomItem], transform.position, Quaternion.identity);
 				}
 			}
-	}
+		}
 	}
 	#endregion
 
