@@ -9,36 +9,44 @@ public class EnemyController : MonoBehaviour
 	[Header("Stats")]
 	[SerializeField] float _moveSpeed;
 	[SerializeField] int _health = 150;
+	Vector3 _moveDirection;
+
 	[Header("Chase Player")]
 	[SerializeField] bool _shouldChasePlayer;
 	[SerializeField] float _rangeToChasePlayer;
+
 	[Header("Run Away")]
 	[SerializeField] bool _shouldRunAway;
 	[SerializeField] float _rangeToRunAway;
+
 	[Header("Wandering")]
 	[SerializeField] bool _shouldWander;
 	[SerializeField] float _wanderLength;
 	[SerializeField] float _pauseLength;
 	float _wanderCounter, _pauseCounter;
 	Vector3 _wanderDirection;
-	[Header("References")]
-	[SerializeField] Rigidbody2D _theRB;
-	[SerializeField] SpriteRenderer _theSprite;
-	[Header("FX")]
-	[SerializeField] GameObject[] _deathSplatters;
-	[SerializeField] GameObject _hurtEffect;
-	[SerializeField] int _hurtSFX, _deathSFX, _shootSFX;
+
+	[Header("Patrolling")]
+	[SerializeField] bool _shouldPatrol;
+	[SerializeField] Transform[] _patrolPoints;
+	int _currentPatrolPoint;
 
 	[Header("Shooting")]
 	[SerializeField] bool _shouldShoot;
 	[SerializeField] GameObject _bullet;
 	[SerializeField] Transform _firePoint;
 	[SerializeField] float _fireRate;
-	[SerializeField] float _rangeToShootPlayer;	//has to be >= _rangeToChasePlayer
-
+	[SerializeField] float _rangeToShootPlayer;  //has to be >= _rangeToChasePlayer
 	float _fireCounter;
 
-	public Vector3 _moveDirection;
+	[Header("FX")]
+	[SerializeField] GameObject[] _deathSplatters;
+	[SerializeField] GameObject _hurtEffect;
+	[SerializeField] int _hurtSFX, _deathSFX, _shootSFX;
+
+	[Header("References")]
+	[SerializeField] Rigidbody2D _theRB;
+	[SerializeField] SpriteRenderer _theSprite;
 	Animator _anim;
 
 	#endregion
@@ -50,11 +58,7 @@ public class EnemyController : MonoBehaviour
 		_anim = GetComponent<Animator>();
 
 		if (_shouldWander)
-		{
-			_wanderCounter = Random.Range(_wanderLength * 0.75f, _wanderLength * 1.25f);
 			_pauseCounter = Random.Range(_pauseLength * 0.75f, _pauseLength * 1.25f);
-
-		}
 	}
 	
 	void Update() 
@@ -101,23 +105,37 @@ public class EnemyController : MonoBehaviour
 						}
 					}
 				}
+
+				if (_shouldPatrol)
+				{
+					_moveDirection = _patrolPoints[_currentPatrolPoint].position - transform.position;
+
+					if(Vector3.Distance(transform.position, _patrolPoints[_currentPatrolPoint].position) < 0.2f)
+					{
+						_currentPatrolPoint++;
+						if (_currentPatrolPoint >= _patrolPoints.Length)
+							_currentPatrolPoint = 0;
+					}
+				}
+			}
+
+			if (_shouldRunAway && Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < _rangeToRunAway)
+			{
+				_moveDirection = transform.position - PlayerController.Instance.transform.position;
+			}
+
+			_moveDirection.Normalize();
+			_theRB.velocity = _moveDirection * _moveSpeed;
+
+			if (_shouldShoot && Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < _rangeToShootPlayer)
+			{
+				Shoot();
 			}
 		}
-
-		if (_shouldRunAway && Vector3.Distance(transform.position, PlayerController.Instance.transform.position) < _rangeToRunAway)
+		else
 		{
-			_moveDirection = transform.position - PlayerController.Instance.transform.position;
+			_theRB.velocity = Vector2.zero;
 		}
-
-
-		_moveDirection.Normalize();
-		_theRB.velocity = _moveDirection * _moveSpeed;
-
-		if (_shouldShoot && Vector3.Distance(transform.position,PlayerController.Instance.transform.position) < _rangeToShootPlayer)
-		{
-			Shoot();
-		}
-
 		//animations...
 		if (_moveDirection != Vector3.zero)
 			_anim.SetBool("isMoving", true);
