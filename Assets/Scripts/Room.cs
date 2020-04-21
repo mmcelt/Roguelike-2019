@@ -8,6 +8,7 @@ public class Room : MonoBehaviour
 
 	public bool _closeWhenEntered;//, _openWhenEnemiesCleared;
 	[SerializeField] GameObject[] _doors;
+	[SerializeField] GameObject _mapHider;
 	//[SerializeField] List<GameObject> _enemiesInRoom = new List<GameObject>();
 
 	[HideInInspector] public bool _roomActive;
@@ -39,6 +40,7 @@ public class Room : MonoBehaviour
 			}
 
 			_roomActive = true;
+			_mapHider.SetActive(false);
 		}
 	}
 
