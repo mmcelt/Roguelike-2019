@@ -8,7 +8,7 @@ public class PlayerHealthController : MonoBehaviour
 
 	public static PlayerHealthController Instance;
 
-	public int _maxHealth;
+	[SerializeField] int _maxHealth;
 	[SerializeField] int _currentHealth;
 	[SerializeField] int _hurtSFX, _dieSFX;
 
@@ -16,6 +16,8 @@ public class PlayerHealthController : MonoBehaviour
 
 	float _invincibilityCounter;
 	Color _originalBodyColor;
+
+	public int MaxHealth => _maxHealth;
 
 	#endregion
 
@@ -82,12 +84,19 @@ public class PlayerHealthController : MonoBehaviour
 		_currentHealth = Mathf.Min(_currentHealth + amount, _maxHealth);
 		UpdateHalthbar();
 	}
+
+	public void IncreaseMaxHealth(int amount)
+	{
+		_maxHealth += amount;
+		HealPlayer(_maxHealth);
+	}
 	#endregion
 
 	#region Private Methods
 
 	void UpdateHalthbar()
 	{
+		UIController.Instance._healthSlider.maxValue = _maxHealth;
 		UIController.Instance._healthSlider.value = _currentHealth;
 		UIController.Instance._healthText.text = _currentHealth + " / " + _maxHealth;
 	}

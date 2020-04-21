@@ -8,7 +8,15 @@ public class ShopItem : MonoBehaviour
 
 	[SerializeField] GameObject _buyMessage;
 	[SerializeField] int _itemCost;
-	[SerializeField] bool _isHealthRestore, _isHealthUpgrade, _isWeapon;
+	[SerializeField] int _buyItemSFX;
+	[SerializeField] int _notEnoughCoinSFX;
+	[Header("Health Restore")]
+	[SerializeField] bool _isHealthRestore;
+	[Header("Health Upgrade")]
+	[SerializeField] bool _isHealthUpgrade;
+	[SerializeField] int _healthUpgradeAmount;
+	[Header("Weapon")]
+	[SerializeField] bool _isWeapon;
 
 	bool _inBuyZone;
 
@@ -32,7 +40,28 @@ public class ShopItem : MonoBehaviour
 					LevelManager.Instance.SpendCoins(_itemCost);
 
 					if (_isHealthRestore)
-						PlayerHealthController.Instance.HealPlayer(PlayerHealthController.Instance._maxHealth);
+					{
+						PlayerHealthController.Instance.HealPlayer(PlayerHealthController.Instance.MaxHealth);
+					}
+					if (_isHealthUpgrade)
+					{
+						PlayerHealthController.Instance.IncreaseMaxHealth(_healthUpgradeAmount);
+						gameObject.SetActive(false);
+						_inBuyZone = false;
+					}
+					if (_isWeapon)
+					{
+
+
+						gameObject.SetActive(false);
+						_inBuyZone = false;
+					}
+
+					AudioManager.Instance.PlaySFX(_buyItemSFX);
+				}
+				else
+				{
+					AudioManager.Instance.PlaySFX(_notEnoughCoinSFX);
 				}
 			}
 		}

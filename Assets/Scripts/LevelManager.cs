@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
 	void Start() 
 	{
 		Time.timeScale = 1f;
-		GetCoins(_currentCoins);
+		GetCoins(0);
 	}
 	
 	void Update() 
