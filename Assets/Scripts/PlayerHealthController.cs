@@ -8,7 +8,7 @@ public class PlayerHealthController : MonoBehaviour
 
 	public static PlayerHealthController Instance;
 
-	[SerializeField] int _maxHealth;
+	public int _maxHealth;
 	[SerializeField] int _currentHealth;
 	[SerializeField] int _hurtSFX, _dieSFX;
 
