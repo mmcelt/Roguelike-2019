@@ -46,9 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _layoutRoom: {fileID: 3527217691822579402, guid: 58e63b7304cfbb14eaf515035a42baa6,
     type: 3}
-  _distanceToEnd: 10
   _startColor: {r: 0, g: 1, b: 0, a: 1}
   _endColor: {r: 1, g: 0, b: 0, a: 1}
+  _shopColor: {r: 1, g: 1, b: 0, a: 1}
+  _distanceToEnd: 10
+  _includeShop: 1
+  _minDistanceToShop: 3
+  _maxDistanceToShop: 7
   _generationPoint: {fileID: 2380402371332697144}
   _selectedDirection: 0
   _xOffset: 18
@@ -59,6 +63,8 @@ MonoBehaviour:
   _centerStart: {fileID: 539691606997567062, guid: 2070b670a62d95b44b4cbbb2e20ef291,
     type: 3}
   _centerEnd: {fileID: 6859548676438589527, guid: ed898adcf69df5649aa6433664925e16,
+    type: 3}
+  _centerShop: {fileID: 4446214922624192555, guid: 74b9b8494c03af64997872a4adc659a9,
     type: 3}
   _potentialCenters:
   - {fileID: 1015966760118314786, guid: a5433042bd6c0a041abc5409b386ed71, type: 3}

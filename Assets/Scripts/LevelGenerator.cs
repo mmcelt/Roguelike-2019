@@ -10,17 +10,19 @@ public class LevelGenerator : MonoBehaviour
 	public enum Direction { UP, RIGHT, DOWN, LEFT };
 
 	[SerializeField] GameObject _layoutRoom;
+	[SerializeField] Color _startColor, _endColor, _shopColor;
 	[SerializeField] int _distanceToEnd;
-	[SerializeField] Color _startColor, _endColor;
+	[SerializeField] bool _includeShop;
+	[SerializeField] int _minDistanceToShop, _maxDistanceToShop;
 	[SerializeField] Transform _generationPoint;
 	[SerializeField] Direction _selectedDirection;
 	[SerializeField] float _xOffset = 18f;
 	[SerializeField] float _yOffset = 10f;
 	[SerializeField] LayerMask _roomLayer;
-	[SerializeField] RoomCenter _centerStart, _centerEnd;
+	[SerializeField] RoomCenter _centerStart, _centerEnd, _centerShop;
 	[SerializeField] RoomCenter[] _potentialCenters;
 
-	GameObject _endRoom;
+	GameObject _endRoom, _shopRoom;
 
 	List<GameObject> _layoutRoomObjects = new List<GameObject>();
 	List<GameObject> _generatedOutlines = new List<GameObject>();
@@ -45,6 +47,14 @@ public class LevelGenerator : MonoBehaviour
 			GameObject newRoom = Instantiate(_layoutRoom, _generationPoint.position, _generationPoint.rotation);
 
 			_layoutRoomObjects.Add(newRoom);
+
+			if (i == _distanceToEnd - 1)  //this is the last room
+			{
+				newRoom.GetComponent<SpriteRenderer>().color = _endColor;
+				_layoutRoomObjects.RemoveAt(i);
+				_endRoom = newRoom;
+			}
+
 			_selectedDirection = (Direction)Random.Range(0, 4);
 			MoveGenerationPoint();
 
@@ -53,18 +63,18 @@ public class LevelGenerator : MonoBehaviour
 				//_selectedDirection = (Direction)Random.Range(0, 4);
 				MoveGenerationPoint();
 			}
-
-			if (i == _distanceToEnd - 1)	//this is the last room
-			{
-				newRoom.GetComponent<SpriteRenderer>().color = _endColor;
-				_layoutRoomObjects.RemoveAt(i);
-				_endRoom = newRoom;
-			}
+		}
+		//put in a shop...
+		if (_includeShop)
+		{
+			int shopSelector = Random.Range(_minDistanceToShop, _maxDistanceToShop + 1);
+			_shopRoom = _layoutRoomObjects[shopSelector];
+			_layoutRoomObjects.RemoveAt(shopSelector);
+			_shopRoom.GetComponent<SpriteRenderer>().color = _shopColor;
 		}
 
 		//create room outlines...
-		//start room
-		CreateRoomOutline(Vector3.zero);
+		CreateRoomOutline(Vector3.zero);	//start room
 		//in-between rooms...
 		foreach(GameObject room in _layoutRoomObjects)
 		{
@@ -72,8 +82,12 @@ public class LevelGenerator : MonoBehaviour
 		}
 		//end room
 		CreateRoomOutline(_endRoom.transform.position);
+		//shop room
+		if (_includeShop)
+			CreateRoomOutline(_shopRoom.transform.position);
 
-		foreach(GameObject outline in _generatedOutlines)
+		//create room centers...
+		foreach (GameObject outline in _generatedOutlines)
 		{
 			bool generateCenter = true;
 
@@ -86,6 +100,14 @@ public class LevelGenerator : MonoBehaviour
 			{
 				Instantiate(_centerEnd, outline.transform.position, Quaternion.identity)._theRoom = outline.GetComponent<Room>();
 				generateCenter = false;
+			}
+			if (_includeShop)
+			{
+				if (outline.transform.position == _shopRoom.transform.position) //shop room
+				{
+					Instantiate(_centerShop, outline.transform.position, Quaternion.identity)._theRoom = outline.GetComponent<Room>();
+					generateCenter = false;
+				}
 			}
 			if (generateCenter)	//other rooms
 			{
