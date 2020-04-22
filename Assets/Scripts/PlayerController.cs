@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
 	float _activeMoveSpeed;
 	float _dashCooldownCounter;
 
+	public List<Gun> _availableGuns = new List<Gun>();
+	int _currentGun;
+
 	public float DashCounter { get; private set; }
 
 	#endregion
@@ -102,7 +105,23 @@ public class PlayerController : MonoBehaviour
 		//	}
 		//}
 
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.Tab))
+		{
+			if (_availableGuns.Count > 0)
+			{
+				_currentGun++;
+				if (_currentGun >= _availableGuns.Count)
+				{
+					_currentGun = 0;
+				}
+
+				SwitchGun();
+			}
+			else
+				Debug.LogError("Player has no guns!");
+		}
+
+		if (Input.GetKeyDown(KeyCode.Space))	//dashing
 		{
 			if (_dashCooldownCounter > 0 || DashCounter > 0) return;
 
@@ -147,6 +166,15 @@ public class PlayerController : MonoBehaviour
 		_canMove = false;
 		_theRB.velocity = Vector2.zero;
 		_anim.SetBool("isMoving", false);
+	}
+
+	public void SwitchGun()
+	{
+		foreach(Gun gun in _availableGuns)
+		{
+			gun.gameObject.SetActive(false);
+		}
+		_availableGuns[_currentGun].gameObject.SetActive(true);
 	}
 	#endregion
 
