@@ -9,6 +9,8 @@ public class CameraController : MonoBehaviour
 	public static CameraController Instance;
 
 	[SerializeField] float _moveSpeed;
+	[SerializeField] Camera _mainCamera, _bigMapCamera;
+	bool _bigMapActive;
 	Transform _target;
 
 	#endregion
@@ -30,6 +32,14 @@ public class CameraController : MonoBehaviour
 		if (_target == null) return;
 
 		transform.position = Vector3.MoveTowards(transform.position, new Vector3(_target.position.x, _target.position.y, transform.position.z), _moveSpeed * Time.deltaTime);
+
+		if (Input.GetKeyDown(KeyCode.M))
+		{
+			if (!_bigMapActive)
+				ActivateBigMap();
+			else
+				DeactivateBigMap();
+		}
 	}
 	#endregion
 
@@ -38,6 +48,30 @@ public class CameraController : MonoBehaviour
 	public void ChangeTarget(Transform newTarget)
 	{
 		_target = newTarget;
+	}
+
+	public void ActivateBigMap()
+	{
+		if (LevelManager.Instance._isPaused) return;
+
+		_bigMapCamera.enabled = true;
+		_mainCamera.enabled = false;
+		PlayerController.Instance._canMove = false;
+		UIController.Instance._miniMapDisplay.SetActive(false);
+		_bigMapActive = true;
+		Time.timeScale = 0f;
+	}
+
+	public void DeactivateBigMap()
+	{
+		if (LevelManager.Instance._isPaused) return;
+
+		_bigMapCamera.enabled = false;
+		_mainCamera.enabled = true;
+		PlayerController.Instance._canMove = true;
+		UIController.Instance._miniMapDisplay.SetActive(true);
+		_bigMapActive = false;
+		Time.timeScale = 1f;
 	}
 	#endregion
 
