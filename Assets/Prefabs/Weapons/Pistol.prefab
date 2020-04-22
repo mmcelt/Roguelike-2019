@@ -129,5 +129,5 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 7499798901104991302, guid: 5ca61c55c69e3ee49baf8f43b4e5a5f3,
     type: 3}
   _firePoint: {fileID: 2079109816058042320}
-  _timeBetweenShots: 0.4
+  _timeBetweenShots: 0.5
   _shootSFX: 13
