@@ -131,3 +131,5 @@ MonoBehaviour:
   _firePoint: {fileID: 3870639442949262967}
   _timeBetweenShots: 0.35
   _shootSFX: 13
+  _weaponName: Machine Gun
+  _gunUI: {fileID: -2172343002418747524, guid: f72804754a2106a4884d758772ef2a02, type: 3}

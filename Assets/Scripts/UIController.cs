@@ -15,7 +15,8 @@ public class UIController : MonoBehaviour
 	public Image _fadeScreen;
 	public float _fadeSpeed;
 	public GameObject _pauseMenu, _miniMapDisplay, _bigMapInfoText;
-
+	public Image _currentGun;
+	public Text _gunText;
 	[SerializeField] string _mainMenuScene, _levelOneScene;
 
 	bool _fadeToBlack, _fadeFromBlack;

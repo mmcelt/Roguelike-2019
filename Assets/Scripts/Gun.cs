@@ -12,6 +12,8 @@ public class Gun : MonoBehaviour
 	[SerializeField] float _timeBetweenShots;
 	float _shotCounter;
 	[SerializeField] int _shootSFX;
+	public string _weaponName;
+	public Sprite _gunUI;
 
 	#endregion
 

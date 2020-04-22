@@ -101,6 +101,8 @@ MonoBehaviour:
   _firePoint: {fileID: 6250461449282472077}
   _timeBetweenShots: 0.2
   _shootSFX: 13
+  _weaponName: UZI
+  _gunUI: {fileID: 1547619706621703405, guid: f72804754a2106a4884d758772ef2a02, type: 3}
 --- !u!1 &6276739808073693352
 GameObject:
   m_ObjectHideFlags: 0

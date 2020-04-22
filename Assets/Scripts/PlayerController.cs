@@ -49,8 +49,10 @@ public class PlayerController : MonoBehaviour
 	{
 		_theCam = Camera.main;
 		_activeMoveSpeed = _moveSpeed;
+		UIController.Instance._currentGun.sprite = _availableGuns[_currentGun]._gunUI;
+		UIController.Instance._gunText.text = _availableGuns[_currentGun]._weaponName;
 	}
-	
+
 	void Update() 
 	{
 		if (!_canMove || LevelManager.Instance._isPaused) return;
@@ -175,6 +177,8 @@ public class PlayerController : MonoBehaviour
 			gun.gameObject.SetActive(false);
 		}
 		_availableGuns[_currentGun].gameObject.SetActive(true);
+		UIController.Instance._currentGun.sprite = _availableGuns[_currentGun]._gunUI;
+		UIController.Instance._gunText.text = _availableGuns[_currentGun]._weaponName;
 	}
 	#endregion
 

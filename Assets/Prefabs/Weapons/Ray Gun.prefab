@@ -130,4 +130,6 @@ MonoBehaviour:
     type: 3}
   _firePoint: {fileID: 2285947458653648677}
   _timeBetweenShots: 0.1
-  _shootSFX: 13
+  _shootSFX: 16
+  _weaponName: Ray Gun
+  _gunUI: {fileID: -1209311266236218547, guid: f72804754a2106a4884d758772ef2a02, type: 3}

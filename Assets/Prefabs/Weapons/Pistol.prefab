@@ -131,3 +131,5 @@ MonoBehaviour:
   _firePoint: {fileID: 2079109816058042320}
   _timeBetweenShots: 0.5
   _shootSFX: 13
+  _weaponName: Pistol
+  _gunUI: {fileID: 262978286505467586, guid: f72804754a2106a4884d758772ef2a02, type: 3}
