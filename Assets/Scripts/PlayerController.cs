@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
 	[SerializeField] float _moveSpeed;
 	[SerializeField] Rigidbody2D _theRB;
-	[SerializeField] Transform _gunHand;
+	public Transform _gunHand;
 	[SerializeField] Animator _anim;
 	public SpriteRenderer _theSprite;
 	//[Header("Shooting")]
@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour
 	float _dashCooldownCounter;
 
 	public List<Gun> _availableGuns = new List<Gun>();
-	int _currentGun;
 
+	public int CurrentGun { get; set; }
 	public float DashCounter { get; private set; }
 
 	#endregion
@@ -49,8 +49,8 @@ public class PlayerController : MonoBehaviour
 	{
 		_theCam = Camera.main;
 		_activeMoveSpeed = _moveSpeed;
-		UIController.Instance._currentGun.sprite = _availableGuns[_currentGun]._gunUI;
-		UIController.Instance._gunText.text = _availableGuns[_currentGun]._weaponName;
+		UIController.Instance._currentGun.sprite = _availableGuns[CurrentGun]._gunUI;
+		UIController.Instance._gunText.text = _availableGuns[CurrentGun]._weaponName;
 	}
 
 	void Update() 
@@ -111,10 +111,10 @@ public class PlayerController : MonoBehaviour
 		{
 			if (_availableGuns.Count > 0)
 			{
-				_currentGun++;
-				if (_currentGun >= _availableGuns.Count)
+				CurrentGun++;
+				if (CurrentGun >= _availableGuns.Count)
 				{
-					_currentGun = 0;
+					CurrentGun = 0;
 				}
 
 				SwitchGun();
@@ -176,9 +176,9 @@ public class PlayerController : MonoBehaviour
 		{
 			gun.gameObject.SetActive(false);
 		}
-		_availableGuns[_currentGun].gameObject.SetActive(true);
-		UIController.Instance._currentGun.sprite = _availableGuns[_currentGun]._gunUI;
-		UIController.Instance._gunText.text = _availableGuns[_currentGun]._weaponName;
+		_availableGuns[CurrentGun].gameObject.SetActive(true);
+		UIController.Instance._currentGun.sprite = _availableGuns[CurrentGun]._gunUI;
+		UIController.Instance._gunText.text = _availableGuns[CurrentGun]._weaponName;
 	}
 	#endregion
 
