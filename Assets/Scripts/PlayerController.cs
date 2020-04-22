@@ -13,10 +13,11 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] Transform _gunHand;
 	[SerializeField] Animator _anim;
 	public SpriteRenderer _theSprite;
-	[Header("Shooting")]
-	[SerializeField] GameObject _bulletPrefab;
-	[SerializeField] Transform _firePoint;
-	[SerializeField] float _timeBetweenShots;
+	//[Header("Shooting")]
+	//[SerializeField] GameObject _bulletPrefab;
+	//[SerializeField] Transform _firePoint;
+	//[SerializeField] float _timeBetweenShots;
+	//float _shotCounter;
 	[Header("Dashing")]
 	[SerializeField] float _dashSpeed = 8f;
 	[SerializeField] float _dashLength = 0.5f;
@@ -27,7 +28,6 @@ public class PlayerController : MonoBehaviour
 
 	Vector2 _moveInput;
 	Camera _theCam;
-	float _shotCounter;
 	float _activeMoveSpeed;
 	float _dashCooldownCounter;
 
@@ -82,25 +82,25 @@ public class PlayerController : MonoBehaviour
 		float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
 		_gunHand.rotation = Quaternion.Euler(0f, 0f, angle);
 
-		//fire bullet...
-		if (Input.GetMouseButtonDown(0))
-		{
-			Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
-			_shotCounter = _timeBetweenShots;
-			AudioManager.Instance.PlaySFX(_shootSFX);
-		}
+		////fire bullet...
+		//if (Input.GetMouseButtonDown(0))
+		//{
+		//	Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+		//	_shotCounter = _timeBetweenShots;
+		//	AudioManager.Instance.PlaySFX(_shootSFX);
+		//}
 
-		if (Input.GetMouseButton(0))
-		{
-			_shotCounter -= Time.deltaTime;
+		//if (Input.GetMouseButton(0))
+		//{
+		//	_shotCounter -= Time.deltaTime;
 
-			if (_shotCounter <= 0)
-			{
-				Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
-				_shotCounter = _timeBetweenShots;
-				AudioManager.Instance.PlaySFX(_shootSFX);
-			}
-		}
+		//	if (_shotCounter <= 0)
+		//	{
+		//		Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+		//		_shotCounter = _timeBetweenShots;
+		//		AudioManager.Instance.PlaySFX(_shootSFX);
+		//	}
+		//}
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
