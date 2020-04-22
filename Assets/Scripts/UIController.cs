@@ -14,7 +14,7 @@ public class UIController : MonoBehaviour
 	public GameObject _deathScreen;
 	public Image _fadeScreen;
 	public float _fadeSpeed;
-	public GameObject _pauseMenu, _miniMapDisplay;
+	public GameObject _pauseMenu, _miniMapDisplay, _bigMapInfoText;
 
 	[SerializeField] string _mainMenuScene, _levelOneScene;
 
