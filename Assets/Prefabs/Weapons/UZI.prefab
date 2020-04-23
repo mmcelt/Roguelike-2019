@@ -103,6 +103,9 @@ MonoBehaviour:
   _shootSFX: 13
   _weaponName: UZI
   _gunUI: {fileID: 1547619706621703405, guid: f72804754a2106a4884d758772ef2a02, type: 3}
+  _shopCost: 45
+  _shopSprite: {fileID: -5081397497249240502, guid: 48d85d1ef51430e42b6aef57f02c863d,
+    type: 3}
 --- !u!1 &6276739808073693352
 GameObject:
   m_ObjectHideFlags: 0

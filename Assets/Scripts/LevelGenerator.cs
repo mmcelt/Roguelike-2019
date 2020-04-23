@@ -9,20 +9,26 @@ public class LevelGenerator : MonoBehaviour
 
 	public enum Direction { UP, RIGHT, DOWN, LEFT };
 
-	[SerializeField] GameObject _layoutRoom;
-	[SerializeField] Color _startColor, _endColor, _shopColor;
-	[SerializeField] int _distanceToEnd;
+	[Header("Shop")]
 	[SerializeField] bool _includeShop;
 	[SerializeField] int _minDistanceToShop, _maxDistanceToShop;
+	[Header("Gun Room")]
+	[SerializeField] bool _includeGunRoom;
+	[SerializeField] int _minDistanceToGunRoom, _maxDistanceToGunRoom;
+	[Header("Layout")]
+	[SerializeField] GameObject _layoutRoom;
+	[SerializeField] Color _startColor, _endColor, _shopColor, _gunColor;
+	[SerializeField] int _distanceToEnd;
 	[SerializeField] Transform _generationPoint;
 	[SerializeField] Direction _selectedDirection;
 	[SerializeField] float _xOffset = 18f;
 	[SerializeField] float _yOffset = 10f;
+	[Header("Rooms")]
 	[SerializeField] LayerMask _roomLayer;
-	[SerializeField] RoomCenter _centerStart, _centerEnd, _centerShop;
+	[SerializeField] RoomCenter _centerStart, _centerEnd, _centerShop, _centerGun;
 	[SerializeField] RoomCenter[] _potentialCenters;
 
-	GameObject _endRoom, _shopRoom;
+	GameObject _endRoom, _shopRoom, _gunRoom;
 
 	List<GameObject> _layoutRoomObjects = new List<GameObject>();
 	List<GameObject> _generatedOutlines = new List<GameObject>();
@@ -48,10 +54,10 @@ public class LevelGenerator : MonoBehaviour
 
 			_layoutRoomObjects.Add(newRoom);
 
-			if (i == _distanceToEnd - 1)  //this is the last room
+			if (i + 1 == _distanceToEnd)  //this is the last room
 			{
 				newRoom.GetComponent<SpriteRenderer>().color = _endColor;
-				_layoutRoomObjects.RemoveAt(i);
+				_layoutRoomObjects.RemoveAt(_layoutRoomObjects.Count-1);
 				_endRoom = newRoom;
 			}
 
@@ -72,19 +78,33 @@ public class LevelGenerator : MonoBehaviour
 			_layoutRoomObjects.RemoveAt(shopSelector);
 			_shopRoom.GetComponent<SpriteRenderer>().color = _shopColor;
 		}
-
+		//put in a gun room
+		if (_includeGunRoom)
+		{
+			int gunSelector = Random.Range(_minDistanceToGunRoom, _maxDistanceToGunRoom);
+			_gunRoom = _layoutRoomObjects[gunSelector];
+			_layoutRoomObjects.RemoveAt(gunSelector);
+			_gunRoom.GetComponent<SpriteRenderer>().color = _gunColor;
+		}
 		//create room outlines...
 		CreateRoomOutline(Vector3.zero);	//start room
+
 		//in-between rooms...
 		foreach(GameObject room in _layoutRoomObjects)
 		{
 			CreateRoomOutline(room.transform.position);
 		}
+
 		//end room
 		CreateRoomOutline(_endRoom.transform.position);
+
 		//shop room
 		if (_includeShop)
 			CreateRoomOutline(_shopRoom.transform.position);
+
+		//gun room
+		if (_includeGunRoom)
+			CreateRoomOutline(_gunRoom.transform.position);
 
 		//create room centers...
 		foreach (GameObject outline in _generatedOutlines)
@@ -106,6 +126,14 @@ public class LevelGenerator : MonoBehaviour
 				if (outline.transform.position == _shopRoom.transform.position) //shop room
 				{
 					Instantiate(_centerShop, outline.transform.position, Quaternion.identity)._theRoom = outline.GetComponent<Room>();
+					generateCenter = false;
+				}
+			}
+			if (_includeGunRoom)
+			{
+				if (outline.transform.position == _gunRoom.transform.position) //gun room
+				{
+					Instantiate(_centerGun, outline.transform.position, Quaternion.identity)._theRoom = outline.GetComponent<Room>();
 					generateCenter = false;
 				}
 			}

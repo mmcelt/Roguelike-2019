@@ -200,7 +200,7 @@ PrefabInstance:
     - target: {fileID: 4925936336146707042, guid: f09b7a4d4ca4b744dbbd80750da3a909,
         type: 3}
       propertyPath: _currentCoins
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4925936336146707070, guid: f09b7a4d4ca4b744dbbd80750da3a909,
         type: 3}

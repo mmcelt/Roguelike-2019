@@ -14,6 +14,9 @@ public class Gun : MonoBehaviour
 	[SerializeField] int _shootSFX;
 	public string _weaponName;
 	public Sprite _gunUI;
+	[Header("Shop Data")]
+	public int _shopCost;
+	public Sprite _shopSprite;
 
 	#endregion
 

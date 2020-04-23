@@ -129,7 +129,10 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 7499798901104991302, guid: 5ca61c55c69e3ee49baf8f43b4e5a5f3,
     type: 3}
   _firePoint: {fileID: 2079109816058042320}
-  _timeBetweenShots: 0.7
+  _timeBetweenShots: 0.6
   _shootSFX: 13
   _weaponName: Pistol
   _gunUI: {fileID: 262978286505467586, guid: f72804754a2106a4884d758772ef2a02, type: 3}
+  _shopCost: 15
+  _shopSprite: {fileID: 6407226241554960098, guid: 48d85d1ef51430e42b6aef57f02c863d,
+    type: 3}
