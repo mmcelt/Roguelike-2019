@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
 	public static LevelManager Instance;
 
 	[SerializeField] float _loadWaitTime = 4f;
+	[SerializeField] Transform _startpoint;
 
 	public string _nextLevel;
 	public bool _isPaused;
@@ -26,6 +27,9 @@ public class LevelManager : MonoBehaviour
 
 	void Start() 
 	{
+		PlayerController.Instance.transform.position = _startpoint.position;
+		PlayerController.Instance._canMove = true;
+
 		_currentCoins = CharacterTracker.Instance._currentCoins;
 
 		Time.timeScale = 1f;

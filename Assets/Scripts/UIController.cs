@@ -36,6 +36,9 @@ public class UIController : MonoBehaviour
 	{
 		_fadeFromBlack = true;
 		_fadeToBlack = false;
+
+		_currentGun.sprite = PlayerController.Instance._availableGuns[PlayerController.Instance.CurrentGun]._gunUI;
+		_gunText.text = PlayerController.Instance._availableGuns[PlayerController.Instance.CurrentGun]._weaponName;
 	}
 	
 	void Update() 

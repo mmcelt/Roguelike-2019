@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
 	public static CameraController Instance;
 
 	[SerializeField] float _moveSpeed;
-	[SerializeField] Camera _mainCamera, _bigMapCamera;
+	public Camera _mainCamera, _bigMapCamera;
 	bool _bigMapActive;
 	Transform _target;
 

@@ -148,5 +148,5 @@ MonoBehaviour:
   _theRB: {fileID: 3516647541523978119}
   _impactFX: {fileID: 2075030217373539307, guid: 09eee142c00e2af458f85fc9fa883724,
     type: 3}
-  _damageToGive: 20
+  _damageToGive: 30
   _impactSFX: 4

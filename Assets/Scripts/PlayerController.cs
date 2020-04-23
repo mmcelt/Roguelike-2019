@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 	[HideInInspector] public bool _canMove = true;
 
 	Vector2 _moveInput;
-	Camera _theCam;
+	//Camera _theCam;
 	float _activeMoveSpeed;
 	float _dashCooldownCounter;
 
@@ -42,12 +42,21 @@ public class PlayerController : MonoBehaviour
 
 	void Awake()
 	{
-		Instance = this;
+		//check if instance already exists, if not set it to this instance.
+		if (Instance == null)
+			Instance = this;
+		//else if (Instance != this)
+		//{
+		//	//if instance already exists, and it is not this-destroy this one...
+		//	Destroy(gameObject);
+		//}
+		//make this instance persist between scenes.
+		DontDestroyOnLoad(gameObject);
 	}
 
 	void Start() 
 	{
-		_theCam = Camera.main;
+		//_theCam = Camera.main;
 		_activeMoveSpeed = _moveSpeed;
 		UIController.Instance._currentGun.sprite = _availableGuns[CurrentGun]._gunUI;
 		UIController.Instance._gunText.text = _availableGuns[CurrentGun]._weaponName;
@@ -68,7 +77,7 @@ public class PlayerController : MonoBehaviour
 		_theRB.velocity = _moveInput * _activeMoveSpeed;
 
 		Vector3 mousePos = Input.mousePosition;
-		Vector3 screenPoint = _theCam.WorldToScreenPoint(transform.localPosition);
+		Vector3 screenPoint = CameraController.Instance._mainCamera.WorldToScreenPoint(transform.localPosition);
 
 		//flip the player & square away the gun...
 		if (mousePos.x < screenPoint.x)
