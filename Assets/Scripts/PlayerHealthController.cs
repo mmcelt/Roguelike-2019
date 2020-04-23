@@ -8,8 +8,8 @@ public class PlayerHealthController : MonoBehaviour
 
 	public static PlayerHealthController Instance;
 
-	[SerializeField] int _maxHealth;
-	[SerializeField] int _currentHealth;
+	public int _maxHealth;
+	public int _currentHealth;
 	[SerializeField] int _hurtSFX, _dieSFX;
 
 	public float _invincibilityLength = 1f;
@@ -30,7 +30,10 @@ public class PlayerHealthController : MonoBehaviour
 
 	void Start() 
 	{
-		_currentHealth = _maxHealth;
+		_maxHealth = CharacterTracker.Instance._maxHealth;
+		_currentHealth = CharacterTracker.Instance._currentHealth;
+
+		//_currentHealth = _maxHealth;
 		UIController.Instance._healthSlider.maxValue = _maxHealth;
 		UpdateHalthbar();
 		_originalBodyColor = PlayerController.Instance._theSprite.color;
