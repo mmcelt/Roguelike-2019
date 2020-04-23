@@ -13,15 +13,6 @@ public class MainMenu : MonoBehaviour
 
 	#region MonoBehaviour Methods
 
-	void Start() 
-	{
-		
-	}
-	
-	void Update() 
-	{
-		
-	}
 	#endregion
 
 	#region Public Methods

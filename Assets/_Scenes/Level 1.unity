@@ -381,6 +381,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2380402370301914972, guid: d6667306d36d3194e87c4d0a7fac140f,
+        type: 3}
+      propertyPath: _potentialCenters.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380402370301914972, guid: d6667306d36d3194e87c4d0a7fac140f,
+        type: 3}
+      propertyPath: _distanceToEnd
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380402370301914972, guid: d6667306d36d3194e87c4d0a7fac140f,
+        type: 3}
+      propertyPath: _maxDistanceToShop
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380402370301914972, guid: d6667306d36d3194e87c4d0a7fac140f,
+        type: 3}
+      propertyPath: _maxDistanceToGunRoom
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380402370301914972, guid: d6667306d36d3194e87c4d0a7fac140f,
+        type: 3}
+      propertyPath: _minDistanceToGunRoom
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380402370301914972, guid: d6667306d36d3194e87c4d0a7fac140f,
+        type: 3}
+      propertyPath: _potentialCenters.Array.data[8]
+      value: 
+      objectReference: {fileID: 1015966760118314786, guid: 5f76654d5ce6be447b60206627b53e11,
+        type: 3}
     - target: {fileID: 2380402370301914973, guid: d6667306d36d3194e87c4d0a7fac140f,
         type: 3}
       propertyPath: m_Name
@@ -533,6 +564,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4925936336146707042, guid: f09b7a4d4ca4b744dbbd80750da3a909,
+        type: 3}
+      propertyPath: _nextLevel
+      value: Level 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4925936336146707070, guid: f09b7a4d4ca4b744dbbd80750da3a909,
         type: 3}
       propertyPath: m_Name
