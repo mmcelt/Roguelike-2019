@@ -3726,9 +3726,10 @@ MonoBehaviour:
   _healthUpgradeAmount: 2
   _isWeapon: 1
   _potentialGuns:
+  - {fileID: 7772732644321615683, guid: 973ee761ecaff9b488faf46430c00062, type: 3}
   - {fileID: 1784790042140643232, guid: 1c13311aaa13717459e5154833e54321, type: 3}
-  - {fileID: 3578642454754301447, guid: 1bbe603edff15cd45ba5e57d4ae4b60a, type: 3}
   - {fileID: 2285947458792427717, guid: 2cda232c2135a524eb159c0931ecb6c0, type: 3}
+  - {fileID: 2566645553307786882, guid: ffc6f47397426d3409f73299c949dd81, type: 3}
   - {fileID: 8920934410462202202, guid: 5636cfd301d9d08489ef551b6773bf21, type: 3}
   _gunSprite: {fileID: 3137788817553565022}
   _gunInfoText: {fileID: 2625832502837886308}

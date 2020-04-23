@@ -152,9 +152,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _potentialGuns:
+  - {fileID: 4883384507069080954, guid: 29eadcf00fcb90b47a1eae504d2bd19e, type: 3}
   - {fileID: 7978276208707475304, guid: 23f5c5eca74aa8742bcf0bdc499193ea, type: 3}
-  - {fileID: 96587723107951443, guid: 35c2c193294c40d4da1b2bd036bdd981, type: 3}
   - {fileID: 9024996066106521450, guid: f170d6add9e5ae344948bec36c0b4b7b, type: 3}
+  - {fileID: 7294266914024016248, guid: 5ef1fe61692efa945a616f2c7ec4a6f8, type: 3}
   - {fileID: 7009711615802902664, guid: 8f913ad6ecb67d0499906e43cb9d6b84, type: 3}
   _theSprite: {fileID: 2492510500004861730}
   _chestOpenSprite: {fileID: 444756885432138965, guid: 815f98a145a4ae14d897a7f431477ea9,
