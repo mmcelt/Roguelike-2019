@@ -128,7 +128,7 @@ MonoBehaviour:
   _shouldShoot: 1
   _bullet: {fileID: 6097897845569742414, guid: 38b49db38945b434d9dc80faa1600ce9, type: 3}
   _firePoint: {fileID: 3838921758080711472}
-  _fireRate: 0.5
+  _fireRate: 0.6
   _rangeToShootPlayer: 10
   _shouldDropItem: 1
   _itemsToDrop:

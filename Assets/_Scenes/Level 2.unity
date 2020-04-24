@@ -200,27 +200,27 @@ PrefabInstance:
     - target: {fileID: 2380402370301914972, guid: d6667306d36d3194e87c4d0a7fac140f,
         type: 3}
       propertyPath: _distanceToEnd
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2380402370301914972, guid: d6667306d36d3194e87c4d0a7fac140f,
-        type: 3}
-      propertyPath: _minDistanceToShop
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2380402370301914972, guid: d6667306d36d3194e87c4d0a7fac140f,
-        type: 3}
-      propertyPath: _maxDistanceToShop
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2380402370301914972, guid: d6667306d36d3194e87c4d0a7fac140f,
         type: 3}
+      propertyPath: _minDistanceToShop
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380402370301914972, guid: d6667306d36d3194e87c4d0a7fac140f,
+        type: 3}
+      propertyPath: _maxDistanceToShop
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380402370301914972, guid: d6667306d36d3194e87c4d0a7fac140f,
+        type: 3}
       propertyPath: _maxDistanceToGunRoom
-      value: 17
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2380402370301914972, guid: d6667306d36d3194e87c4d0a7fac140f,
         type: 3}
       propertyPath: _minDistanceToGunRoom
-      value: 12
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2380402370301914973, guid: d6667306d36d3194e87c4d0a7fac140f,
         type: 3}

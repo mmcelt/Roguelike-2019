@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
 	[SerializeField] float _moveSpeed;
 	public Camera _mainCamera, _bigMapCamera;
 	bool _bigMapActive;
-	Transform _target;
+	[SerializeField] Transform _target;
 
 	#endregion
 

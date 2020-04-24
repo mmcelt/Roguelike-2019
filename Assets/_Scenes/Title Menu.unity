@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -364,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a5e98b515c6114da2be42de66ace62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelToLoad: Level 1
+  _levelToLoad: Character Select
 --- !u!1 &769969593
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,6 +732,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -808,6 +810,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

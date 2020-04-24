@@ -7,16 +7,11 @@ public class LevelExit : MonoBehaviour
 {
 	#region Fields
 
-	[SerializeField] string _levelToLoad;
+	//[SerializeField] string _levelToLoad;
 
 	#endregion
 
 	#region MonoBehaviour Methods
-
-	void Start() 
-	{
-		
-	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
