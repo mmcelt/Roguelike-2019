@@ -7,7 +7,7 @@ public class CharacterSelector : MonoBehaviour
 	#region Fields
 
 	[SerializeField] GameObject _message;
-	[SerializeField] PlayerController _playerToSpawn;
+	public PlayerController _playerToSpawn;
 
 	bool _canSelect;
 

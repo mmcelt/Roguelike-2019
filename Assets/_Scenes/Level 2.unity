@@ -222,6 +222,12 @@ PrefabInstance:
       propertyPath: _minDistanceToGunRoom
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 2380402370301914972, guid: d6667306d36d3194e87c4d0a7fac140f,
+        type: 3}
+      propertyPath: _centerEnd
+      value: 
+      objectReference: {fileID: 7241577648990903617, guid: 4efd061e7cfd1f9478a0b1d32f3af0fa,
+        type: 3}
     - target: {fileID: 2380402370301914973, guid: d6667306d36d3194e87c4d0a7fac140f,
         type: 3}
       propertyPath: m_Name
