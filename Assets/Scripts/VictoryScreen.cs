@@ -18,6 +18,8 @@ public class VictoryScreen : MonoBehaviour
 	void Start() 
 	{
 		Time.timeScale = 1f;
+		Destroy(PlayerController.Instance.gameObject);
+
 		StartCoroutine(VictorySequencer());
 	}
 	#endregion
