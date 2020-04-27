@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
 	#region Fields
 
 	[SerializeField] string _levelToLoad;
+	[SerializeField] GameObject _warningPanel;
+	[SerializeField] CharacterSelector[] _charactersToRelock;
 
 	#endregion
 
@@ -30,6 +32,26 @@ public class MainMenu : MonoBehaviour
 
 #endif
 		Application.Quit();
+	}
+
+	public void DeleteSave()
+	{
+		_warningPanel.SetActive(true);
+	}
+
+	public void OkToDelete()
+	{
+		foreach(CharacterSelector character in _charactersToRelock)
+		{
+			PlayerPrefs.SetInt(character._playerToSpawn.name, 0);
+		}
+
+		_warningPanel.SetActive(false);
+	}
+
+	public void CancelDeletion()
+	{
+		_warningPanel.SetActive(false);
 	}
 	#endregion
 
