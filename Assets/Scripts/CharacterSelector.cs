@@ -8,6 +8,7 @@ public class CharacterSelector : MonoBehaviour
 
 	[SerializeField] GameObject _message;
 	public PlayerController _playerToSpawn;
+	[SerializeField] bool _shouldUnlock;
 
 	bool _canSelect;
 
@@ -17,7 +18,19 @@ public class CharacterSelector : MonoBehaviour
 
 	void Start() 
 	{
-		
+		if (!_shouldUnlock) return;
+
+		if (PlayerPrefs.HasKey(_playerToSpawn.name))
+		{
+			if (PlayerPrefs.GetInt(_playerToSpawn.name) == 1)
+				gameObject.SetActive(true);
+			else
+				gameObject.SetActive(false);
+		}
+		else
+		{
+			gameObject.SetActive(false);
+		}
 	}
 	
 	void Update() 

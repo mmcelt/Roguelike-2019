@@ -414,3 +414,4 @@ MonoBehaviour:
   _message: {fileID: 2067192455187736473}
   _playerToSpawn: {fileID: 4954370337531454961, guid: 4b8f7856709771f41ae8366b31d6fe33,
     type: 3}
+  _shouldUnlock: 0
